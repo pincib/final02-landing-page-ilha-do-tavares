@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { animate, createScope, stagger } from "animejs";
 import {
   ArrowDown,
   ArrowUpRight,
@@ -148,6 +149,10 @@ export default function Home() {
   const [activeProfile, setActiveProfile] = useState("offshore");
   const [formStatus, setFormStatus] = useState<"idle" | "error" | "success">("idle");
 
+  const rootRef = useRef<HTMLDivElement>(null);
+  const scopeRef = useRef<ReturnType<typeof createScope> | null>(null);
+  const featureCardRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     document.documentElement.lang = language;
     document.title = language === "en-US" ? "Tavares Island — Island asset in Guanabara Bay | Pinciara" : "Ilha do Tavares — Ativo insular na Baía de Guanabara | Pinciara";
@@ -174,11 +179,74 @@ export default function Home() {
     const consent = window.localStorage.getItem("ilha-tavares-consent");
     if (!consent) setConsentVisible(true);
 
-    const revealObserver = new IntersectionObserver(
-      (entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add("is-visible")),
-      { threshold: 0.12 },
-    );
-    document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
+    let revealObserver: IntersectionObserver | null = null;
+
+    if (rootRef.current) {
+      scopeRef.current = createScope({ root: rootRef }).add(() => {
+        // Hero entrance sequence
+        animate(".hero-copy > *", {
+          opacity: [0, 1],
+          translateY: [24, 0],
+          delay: stagger(100, { start: 150 }),
+          duration: 850,
+          ease: "outCubic",
+        });
+
+        animate(".hero-aside", {
+          opacity: [0, 1],
+          translateX: [24, 0],
+          delay: 500,
+          duration: 850,
+          ease: "outCubic",
+        });
+
+        // Continuous cue motion
+        animate(".scroll-cue", {
+          translateY: [0, 6],
+          duration: 1200,
+          alternate: true,
+          loop: true,
+          ease: "inOutQuad",
+        });
+
+        // Scroll reveals for cards and sections
+        revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              const el = entry.target as HTMLElement;
+              if (el.dataset.animated === "true") return;
+              el.dataset.animated = "true";
+
+              if (el.classList.contains("stagger-group")) {
+                const items = el.querySelectorAll(".stagger-item");
+                if (items.length > 0) {
+                  animate(items, {
+                    opacity: [0, 1],
+                    translateY: [24, 0],
+                    duration: 750,
+                    delay: stagger(100),
+                    ease: "outCubic",
+                  });
+                  return;
+                }
+              }
+
+              animate(el, {
+                opacity: [0, 1],
+                translateY: [24, 0],
+                duration: 750,
+                ease: "outCubic",
+              });
+            });
+          },
+          { threshold: 0.12 }
+        );
+
+        const targets = rootRef.current?.querySelectorAll(".reveal, .stagger-group");
+        targets?.forEach((target) => revealObserver?.observe(target));
+      });
+    }
 
     const handleScroll = () => {
       const scrollable = document.documentElement.scrollHeight - window.innerHeight;
@@ -189,11 +257,36 @@ export default function Home() {
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
+
     return () => {
-      revealObserver.disconnect();
+      revealObserver?.disconnect();
+      scopeRef.current?.revert();
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    if (featureCardRef.current) {
+      animate(featureCardRef.current, {
+        opacity: [0.35, 1],
+        translateY: [12, 0],
+        scale: [0.98, 1],
+        duration: 400,
+        ease: "outCubic",
+      });
+    }
+  }, [activeProfile]);
+
+  useEffect(() => {
+    if (formStatus === "success") {
+      animate(".form-success", {
+        opacity: [0, 1],
+        translateY: [10, 0],
+        duration: 450,
+        ease: "outBack",
+      });
+    }
+  }, [formStatus]);
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -226,7 +319,7 @@ export default function Home() {
   };
 
   return (
-    <div className="site-shell">
+    <div className="site-shell" ref={rootRef}>
       <div className="scroll-progress" style={{ width: `${scrollProgress}%` }} aria-hidden="true" />
       <a className="skip-link" href="#oportunidade">{t("Saltar para o conteúdo")}</a>
 
@@ -283,10 +376,10 @@ export default function Home() {
               <Reveal><h2>Uma presença insular a considerar na baía.</h2></Reveal>
               <Reveal><p>Um ativo para avaliação de investidores e operadores da cadeia naval, logística e offshore, com alternativas de uso a confirmar.</p></Reveal>
             </div>
-            <div className="opportunity-grid">
-              <Reveal className="info-block"><IconTile><MapPin size={21} /></IconTile><h3>Localização</h3><p>Inserida na Baía de Guanabara, próxima ao Gradim e conectada por via marítima a Niterói e ao Rio de Janeiro.</p></Reveal>
-              <Reveal className="info-block"><IconTile><Compass size={21} /></IconTile><h3>Tese comercial</h3><p>Possível apoio offshore, logística, manutenção leve, armazenagem e serviços náuticos de baixo impacto.</p></Reveal>
-              <Reveal className="info-block info-block--accent"><IconTile><Scale size={21} /></IconTile><h3>Condição de uso</h3><p>Qualquer desenvolvimento depende de regularização patrimonial, viabilidade técnica e licenciamento.</p></Reveal>
+            <div className="opportunity-grid stagger-group">
+              <div className="info-block stagger-item"><IconTile><MapPin size={21} /></IconTile><h3>Localização</h3><p>Inserida na Baía de Guanabara, próxima ao Gradim e conectada por via marítima a Niterói e ao Rio de Janeiro.</p></div>
+              <div className="info-block stagger-item"><IconTile><Compass size={21} /></IconTile><h3>Tese comercial</h3><p>Possível apoio offshore, logística, manutenção leve, armazenagem e serviços náuticos de baixo impacto.</p></div>
+              <div className="info-block info-block--accent stagger-item"><IconTile><Scale size={21} /></IconTile><h3>Condição de uso</h3><p>Qualquer desenvolvimento depende de regularização patrimonial, viabilidade técnica e licenciamento.</p></div>
             </div>
           </div>
         </section>
@@ -298,10 +391,10 @@ export default function Home() {
               <Reveal className="market-copy"><p className="kicker">CENÁRIO DE MERCADO</p><h2>Crescimento do petróleo offshore no Brasil.</h2><p>A expansão do Pré-Sal demanda embarcações de suprimento, bases logísticas, manutenção naval, equipamentos submarinos, inspecção, armazenagem, transporte marítimo, resposta ambiental e descomissionamento.</p><p className="market-note">A tese depende de confirmação actualizada de mercado.</p></Reveal>
               <Reveal className="metric-panel"><div className="metric-number"><span>3,4</span><MoveRight size={34} /><span>5,2</span></div><div className="metric-unit">milhões de barris/dia</div><p>Cenário optimista descrito no material.</p></Reveal>
             </div>
-            <div className="market-data-grid">
-              <div><h3>Investidores citados</h3><p>Petrobras, Shell, TotalEnergies, Equinor, BP, ExxonMobil, Karoon, Prio, Trident Energy.</p></div>
-              <div><h3>Escopo operacional</h3><p>FPSOs, poços, linhas submarinas, escoamento, reinjecção de gás e CO2, equipamentos e manutenção.</p></div>
-              <div><h3>Campos citados</h3><p>Búzios, Mero, Atapu, Sépia, Tupi, Itapu, Raia, Campos, cessão onerosa e novas áreas.</p></div>
+            <div className="market-data-grid stagger-group">
+              <div className="stagger-item"><h3>Investidores citados</h3><p>Petrobras, Shell, TotalEnergies, Equinor, BP, ExxonMobil, Karoon, Prio, Trident Energy.</p></div>
+              <div className="stagger-item"><h3>Escopo operacional</h3><p>FPSOs, poços, linhas submarinas, escoamento, reinjecção de gás e CO2, equipamentos e manutenção.</p></div>
+              <div className="stagger-item"><h3>Campos citados</h3><p>Búzios, Mero, Atapu, Sépia, Tupi, Itapu, Raia, Campos, cessão onerosa e novas áreas.</p></div>
             </div>
             <p className="closing-line">Búzios e Mero aparecem no material como projectos relevantes para a expansão e para a cadeia de serviços.</p>
           </div>
@@ -332,10 +425,10 @@ export default function Home() {
           <div className="container">
             <SectionMarker number="05" label="BENEFÍCIOS" />
             <Reveal><div className="section-heading"><h2>Benefícios logísticos potenciais.</h2><p>Uma leitura de complementaridade, sempre sujeita à verificação de operação e acessos.</p></div></Reveal>
-            <div className="cards-grid cards-grid--three">
-              <Reveal className="dark-card"><span className="card-index">01</span><IconTile><Factory size={21} /></IconTile><h3>Gradim e cadeia naval</h3><p>Ligação com áreas terrestres, oficinas, armazéns, fornecedores e mão de obra especializada.</p></Reveal>
-              <Reveal className="dark-card"><span className="card-index">02</span><IconTile><Ship size={21} /></IconTile><h3>Baía e Porto do Rio</h3><p>Conexão marítima com Niterói, Rio e demais áreas da baía, com apoio complementar de suprimentos.</p></Reveal>
-              <Reveal className="dark-card"><span className="card-index">03</span><IconTile><MoveRight size={21} /></IconTile><h3>Integração multimodal</h3><p>Possível conexão entre transporte marítimo e rodoviário, sujeita à verificação de operação e acessos.</p></Reveal>
+            <div className="cards-grid cards-grid--three stagger-group">
+              <div className="dark-card stagger-item"><span className="card-index">01</span><IconTile><Factory size={21} /></IconTile><h3>Gradim e cadeia naval</h3><p>Ligação com áreas terrestres, oficinas, armazéns, fornecedores e mão de obra especializada.</p></div>
+              <div className="dark-card stagger-item"><span className="card-index">02</span><IconTile><Ship size={21} /></IconTile><h3>Baía e Porto do Rio</h3><p>Conexão marítima com Niterói, Rio e demais áreas da baía, com apoio complementar de suprimentos.</p></div>
+              <div className="dark-card stagger-item"><span className="card-index">03</span><IconTile><MoveRight size={21} /></IconTile><h3>Integração multimodal</h3><p>Possível conexão entre transporte marítimo e rodoviário, sujeita à verificação de operação e acessos.</p></div>
             </div>
             <p className="section-footnote">A área também pode ser avaliada para monitorização, pesquisa, educação ambiental e recuperação ecológica.</p>
           </div>
@@ -348,11 +441,11 @@ export default function Home() {
             <div className="profile-filter" role="tablist" aria-label={t("Aplicações por perfil de operador")}>
               {applicationProfiles.map((profile) => <button key={profile.id} type="button" role="tab" aria-selected={activeProfile === profile.id} className={activeProfile === profile.id ? "is-active" : ""} onClick={() => setActiveProfile(profile.id)}>{profile.label}</button>)}
             </div>
-            <Reveal className="application-feature">
+            <div ref={featureCardRef} className="reveal application-feature">
               <div className="application-feature-icon"><activeApplication.icon size={28} /></div>
               <div><span className="card-index">{activeProfile === "offshore" ? "01" : activeProfile === "estaleiro" ? "02" : "03"}</span><h3>{activeApplication.title}</h3><p>{activeApplication.copy}</p></div>
               <ArrowUpRight className="feature-arrow" size={22} />
-            </Reveal>
+            </div>
             <p className="section-footnote">Cada aplicação requer estudo de demanda, engenharia, impacto ambiental, navegabilidade e modelo de operação.</p>
           </div>
         </section>
@@ -389,7 +482,7 @@ export default function Home() {
           <div className="container">
             <SectionMarker number="08" label="PROSPECÇÃO" />
             <Reveal><div className="section-heading"><h2>Empresas para prospecção.</h2><p>Perfis de interlocução para uma conversa comercial inicial.</p></div></Reveal>
-            <div className="prospecting-grid"><div><span className="gold-label">Apoio marítimo</span><p>Edison Chouest, Bram, DOF, Solstad, Svitzer, Wilson Sons.</p></div><div><span className="gold-label">Subsea e engenharia</span><p>Oceaneering, Subsea7, Saipem, TechnipFMC, Helix, Baker Hughes, SLB, Halliburton.</p></div><div><span className="gold-label">Logística e conformidade</span><p>Monjasa, Blue Water Shipping, DNV, Bureau Veritas, ABS e empresas de inspecção.</p></div></div>
+            <div className="prospecting-grid stagger-group"><div className="stagger-item"><span className="gold-label">Apoio marítimo</span><p>Edison Chouest, Bram, DOF, Solstad, Svitzer, Wilson Sons.</p></div><div className="stagger-item"><span className="gold-label">Subsea e engenharia</span><p>Oceaneering, Subsea7, Saipem, TechnipFMC, Helix, Baker Hughes, SLB, Halliburton.</p></div><div className="stagger-item"><span className="gold-label">Logística e conformidade</span><p>Monjasa, Blue Water Shipping, DNV, Bureau Veritas, ABS e empresas de inspecção.</p></div></div>
             <p className="closing-line">Operadoras como Petrobras, Shell, Equinor, TotalEnergies, BP, ExxonMobil, Prio, Trident, Enauta e PetroReconcavo podem ser clientes indirectos ou contratantes.</p>
           </div>
         </section>
@@ -398,7 +491,7 @@ export default function Home() {
           <div className="container">
             <SectionMarker number="09" label="DIFERENCIAIS" />
             <Reveal><div className="section-heading"><h2>Diferenciais competitivos.</h2></div></Reveal>
-            <div className="differentials-grid"><div><span className="card-index">01</span><h3>Localização marítima</h3><p>Acesso directo à Baía de Guanabara e possibilidade de complementar instalações terrestres.</p></div><div><span className="card-index">02</span><h3>Ecossistema industrial</h3><p>Proximidade de estaleiros, fornecedores, mão de obra naval e empresas de engenharia.</p></div><div><span className="card-index">03</span><h3>Usos diversificados</h3><p>Apoio offshore, logística, manutenção, pesquisa, turismo e gestão ambiental, conforme viabilidade.</p></div></div>
+            <div className="differentials-grid stagger-group"><div className="stagger-item"><span className="card-index">01</span><h3>Localização marítima</h3><p>Acesso directo à Baía de Guanabara e possibilidade de complementar instalações terrestres.</p></div><div className="stagger-item"><span className="card-index">02</span><h3>Ecossistema industrial</h3><p>Proximidade de estaleiros, fornecedores, mão de obra naval e empresas de engenharia.</p></div><div className="stagger-item"><span className="card-index">03</span><h3>Usos diversificados</h3><p>Apoio offshore, logística, manutenção, pesquisa, turismo e gestão ambiental, conforme viabilidade.</p></div></div>
             <p className="gold-statement">A demanda por inspecção, manutenção, segurança, gestão ambiental e descomissionamento pode persistir ao longo da transição energética.</p>
           </div>
         </section>
@@ -406,8 +499,8 @@ export default function Home() {
         <section className="section section-gray value-section" id="proposta">
           <div className="container">
             <SectionMarker number="10" label="PROPOSTA" />
-            <div className="value-layout"><Reveal><h2>Proposta de valor para investidores.</h2><p>Presença na Baía de Guanabara, próxima a um ecossistema naval e offshore consolidado.</p></Reveal><div className="value-points"><Reveal><div><span>01</span><div><h3>Localização diferenciada</h3><p>Ativo insular com potencial de acesso marítimo e proximidade de fornecedores e clientes.</p></div></div></Reveal><Reveal><div><span>02</span><div><h3>Flexibilidade comercial</h3><p>Venda, arrendamento, parceria operacional ou desenvolvimento sob medida.</p></div></div></Reveal><Reveal><div><span>03</span><div><h3>Infraestrutura especializada</h3><p>Possibilidade de desenvolver uma operação complementar, conforme estudos e aprovações.</p></div></div></Reveal></div></div>
-            <div className="commercial-terms"><h3>Condições comerciais</h3><div className="commercial-terms-grid"><div><span>Venda</span><strong>R$ 140.000.000</strong></div><div><span>Locação</span><strong>R$ 2.000.000</strong><small>Condições e prazo sob consulta.</small></div></div></div>
+            <div className="value-layout"><Reveal><h2>Proposta de valor para investidores.</h2><p>Presença na Baía de Guanabara, próxima a um ecossistema naval e offshore consolidado.</p></Reveal><div className="value-points stagger-group"><div className="stagger-item"><span>01</span><div><h3>Localização diferenciada</h3><p>Ativo insular com potencial de acesso marítimo e proximidade de fornecedores e clientes.</p></div></div><div className="stagger-item"><span>02</span><div><h3>Flexibilidade comercial</h3><p>Venda, arrendamento, parceria operacional ou desenvolvimento sob medida.</p></div></div><div className="stagger-item"><span>03</span><div><h3>Infraestrutura especializada</h3><p>Possibilidade de desenvolver uma operação complementar, conforme estudos e aprovações.</p></div></div></div></div>
+            <div className="commercial-terms"><h3>Condições comerciais</h3><div className="commercial-terms-grid stagger-group"><div className="stagger-item"><span>Venda</span><strong>R$ 140.000.000</strong></div><div className="stagger-item"><span>Locação</span><strong>R$ 2.000.000</strong><small>Condições e prazo sob consulta.</small></div></div></div>
             <div className="investor-callout"><div><span className="gold-label">Chamada para investidores</span><h3>Uma próxima conversa pode começar por uma visita técnica.</h3></div><div className="investor-details"><p><strong>Perfis prioritários</strong> — Operadores offshore, apoio marítimo, logística, serviços submarinos, estaleiros, descomissionamento e tecnologia marítima.</p><p><strong>Formatos disponíveis</strong> — Venda, arrendamento de longo prazo, parceria operacional, joint venture e desenvolvimento sob medida.</p><p><strong>Próximo contacto</strong> — Visita técnica, definição da tese de uso e encaminhamento da diligência documental, técnica e ambiental.</p></div></div>
             <p className="micro-note">A lista de perfis representa público-alvo comercial, não interesse já manifestado.</p>
           </div>
