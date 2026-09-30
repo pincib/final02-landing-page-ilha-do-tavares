@@ -20,11 +20,19 @@ export default function LanguageSelectorDropdown({ language, onChange }: { langu
   }, []);
 
   return <div className="language-selector" ref={ref}>
-    <button className="language-selector-trigger" type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-label="Select language">
+    <button
+      className="language-selector-trigger"
+      type="button"
+      onClick={() => setOpen((value) => !value)}
+      aria-expanded={open}
+      aria-haspopup="true"
+      aria-controls="language-menu"
+      aria-label="Select language"
+    >
       <span className="language-flag" aria-hidden="true">{selected.flag}</span>
       <span className="language-selector-label">{selected.label}</span><ChevronDown size={14} aria-hidden="true" />
     </button>
-    {open && <div className="language-selector-menu" role="menu">
+    {open && <div id="language-menu" className="language-selector-menu" role="menu">
       {languages.map((item) => <button key={item.code} type="button" role="menuitemradio" aria-checked={item.code === language} onClick={() => { onChange(item.code); setOpen(false); }}>
         <span className="language-flag" aria-hidden="true">{item.flag}</span><span>{item.label}</span>{item.code === language && <Check size={14} aria-hidden="true" />}
       </button>)}

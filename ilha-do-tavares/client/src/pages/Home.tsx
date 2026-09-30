@@ -124,7 +124,14 @@ function trackEvent(name: string) {
 function Brand({ compact = false }: { compact?: boolean }) {
   return (
     <div className={compact ? "brand brand--compact" : "brand"} aria-label="Pinciara Imóveis Exclusivos">
-      <img className="brand-logo-image" src={LOGO_IMAGE} alt="Pinciara Imóveis Exclusivos" />
+      <img
+        className="brand-logo-image"
+        src={LOGO_IMAGE}
+        alt="Pinciara Imóveis Exclusivos"
+        width={compact ? 160 : 150}
+        height={34}
+        decoding="async"
+      />
     </div>
   );
 }
@@ -439,7 +446,7 @@ export default function Home() {
             <small>{language === "en-US" ? "Guanabara Bay · Gradim, São Gonçalo" : "Baía de Guanabara · Gradim, São Gonçalo"}</small>
           </span>
         </a>
-        <nav className={`desktop-nav ${menuOpen ? "is-open" : ""}`} aria-label={language === "en-US" ? "Main navigation" : "Navegação principal"}>
+        <nav id="mobile-nav" className={`desktop-nav ${menuOpen ? "is-open" : ""}`} aria-label={language === "en-US" ? "Main navigation" : "Navegação principal"}>
           {navItems.map(([label, id]) => (
             <a key={id} href={`#${id}`} onClick={closeMenu}>
               {language === "en-US" && englishCopy[label] ? englishCopy[label] : label}
@@ -451,7 +458,14 @@ export default function Home() {
         <a className="header-cta" href="#contato" onClick={closeMenu}>
           {language === "en-US" ? "Contact Representative" : "Falar com responsável"}
         </a>
-        <button className="menu-toggle" type="button" aria-label={menuOpen ? t("Fechar menu") : t("Abrir menu")} aria-expanded={menuOpen} onClick={() => setMenuOpen((value) => !value)}>
+        <button
+          className="menu-toggle"
+          type="button"
+          aria-label={menuOpen ? t("Fechar menu") : t("Abrir menu")}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-nav"
+          onClick={() => setMenuOpen((value) => !value)}
+        >
           {menuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </header>
@@ -578,7 +592,14 @@ export default function Home() {
             </div>
 
             <Reveal className="influence-figure">
-              <img src={INFLUENCE_IMAGE} alt={t("Imagem aérea da Ilha do Tavares com áreas de influência")} />
+              <img
+                src={INFLUENCE_IMAGE}
+                alt={t("Imagem aérea da Ilha do Tavares com áreas de influência")}
+                width={1200}
+                height={675}
+                loading="lazy"
+                decoding="async"
+              />
               <figcaption>{t("Áreas de influência da Ilha do Tavares")}</figcaption>
             </Reveal>
 
@@ -586,7 +607,17 @@ export default function Home() {
 
             <div className="terminal-concept">
               <Reveal className="terminal-copy"><span className="gold-label">Conceito principal</span><h3>Terminal marítimo multidisciplinar.</h3><p>Uma proposta de terminal privado para integrar atracação, apoio offshore, logística e serviços operacionais em uma leitura única do ativo.</p><ul><li>Cais e atracação</li><li>Tancagem e armazenagem</li><li>Apoio offshore e reparos leves</li><li>Pátio, edifício operacional e segurança</li></ul></Reveal>
-              <Reveal className="terminal-figure"><img src={TERMINAL_IMAGE} alt={t("Prancha conceitual do terminal marítimo multidisciplinar")} /><span>{t("Conceito principal")}</span></Reveal>
+              <Reveal className="terminal-figure">
+                <img
+                  src={TERMINAL_IMAGE}
+                  alt={t("Prancha conceitual do terminal marítimo multidisciplinar")}
+                  width={1200}
+                  height={800}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span>{t("Conceito principal")}</span>
+              </Reveal>
             </div>
 
             <div className="projects-support">
@@ -688,7 +719,15 @@ export default function Home() {
                 <p className="kicker">PRÓXIMO PASSO</p>
                 <h2>Falar com responsável.</h2>
                 <div className="contact-person">
-                  <img className="contact-avatar" src={CONTACT_IMAGE} alt="Luiz Pinciara" />
+                  <img
+                    className="contact-avatar"
+                    src={CONTACT_IMAGE}
+                    alt="Luiz Pinciara"
+                    width={58}
+                    height={58}
+                    loading="lazy"
+                    decoding="async"
+                  />
                   <div>
                     <strong>Luiz Pinciara</strong>
                     <a href="tel:+5521995221369"><Phone size={15} /> 21 99522-1369</a>
@@ -720,7 +759,7 @@ export default function Home() {
 
               <Reveal className="contact-form-card">
                 {formStatus === "success" ? (
-                  <div className="form-success-card" role="status">
+                  <div className="form-success-card" role="status" aria-live="polite">
                     <div className="form-success-header">
                       <Check size={20} />
                       <span>{language === "en-US" ? "Message ready on WhatsApp!" : "Mensagem pronta no WhatsApp!"}</span>
@@ -754,45 +793,52 @@ export default function Home() {
                 ) : (
                   <form onSubmit={handleFormSubmit} noValidate>
                     <div className="form-grid">
-                      <label>
+                      <label htmlFor="contact-name">
                         {language === "en-US" ? "Name*" : "Nome*"}
                         <input
+                          id="contact-name"
                           name="name"
                           value={formData.name}
                           onChange={(e) => handleFieldChange("name", e.target.value)}
                           className={formErrors.name ? "has-error" : ""}
                           placeholder={language === "en-US" ? "Your full name" : "Seu nome completo"}
                           autoComplete="name"
+                          aria-required="true"
                           aria-invalid={!!formErrors.name}
+                          aria-describedby={formErrors.name ? "contact-name-error" : undefined}
                         />
                         {formErrors.name && (
-                          <span className="field-error">
+                          <span id="contact-name-error" className="field-error" role="alert">
                             <AlertCircle size={13} /> {formErrors.name}
                           </span>
                         )}
                       </label>
 
-                      <label>
+                      <label htmlFor="contact-company">
                         {language === "en-US" ? "Company*" : "Empresa*"}
                         <input
+                          id="contact-company"
                           name="company"
                           value={formData.company}
                           onChange={(e) => handleFieldChange("company", e.target.value)}
                           className={formErrors.company ? "has-error" : ""}
                           placeholder={language === "en-US" ? "Company name" : "Nome da sua empresa"}
                           autoComplete="organization"
+                          aria-required="true"
                           aria-invalid={!!formErrors.company}
+                          aria-describedby={formErrors.company ? "contact-company-error" : undefined}
                         />
                         {formErrors.company && (
-                          <span className="field-error">
+                          <span id="contact-company-error" className="field-error" role="alert">
                             <AlertCircle size={13} /> {formErrors.company}
                           </span>
                         )}
                       </label>
 
-                      <label>
+                      <label htmlFor="contact-email">
                         {language === "en-US" ? "Email*" : "E-mail*"}
                         <input
+                          id="contact-email"
                           name="email"
                           type="email"
                           value={formData.email}
@@ -800,18 +846,21 @@ export default function Home() {
                           className={formErrors.email ? "has-error" : ""}
                           placeholder="contato@empresa.com"
                           autoComplete="email"
+                          aria-required="true"
                           aria-invalid={!!formErrors.email}
+                          aria-describedby={formErrors.email ? "contact-email-error" : undefined}
                         />
                         {formErrors.email && (
-                          <span className="field-error">
+                          <span id="contact-email-error" className="field-error" role="alert">
                             <AlertCircle size={13} /> {formErrors.email}
                           </span>
                         )}
                       </label>
 
-                      <label>
+                      <label htmlFor="contact-phone">
                         {language === "en-US" ? "Phone*" : "Telefone*"}
                         <input
+                          id="contact-phone"
                           name="phone"
                           type="tel"
                           value={formData.phone}
@@ -819,23 +868,28 @@ export default function Home() {
                           className={formErrors.phone ? "has-error" : ""}
                           placeholder={language === "en-US" ? "+1 555 123-4567" : "(21) 99999-9999"}
                           autoComplete="tel"
+                          aria-required="true"
                           aria-invalid={!!formErrors.phone}
+                          aria-describedby={formErrors.phone ? "contact-phone-error" : undefined}
                         />
                         {formErrors.phone && (
-                          <span className="field-error">
+                          <span id="contact-phone-error" className="field-error" role="alert">
                             <AlertCircle size={13} /> {formErrors.phone}
                           </span>
                         )}
                       </label>
                     </div>
 
-                    <label className={`consent-check ${formErrors.lgpd ? "has-error" : ""}`}>
+                    <label htmlFor="contact-lgpd" className={`consent-check ${formErrors.lgpd ? "has-error" : ""}`}>
                       <input
+                        id="contact-lgpd"
                         type="checkbox"
                         name="lgpd"
                         checked={formData.lgpd}
                         onChange={(e) => handleFieldChange("lgpd", e.target.checked)}
+                        aria-required="true"
                         aria-invalid={!!formErrors.lgpd}
+                        aria-describedby={formErrors.lgpd ? "contact-lgpd-error" : undefined}
                       />
                       <span>
                         {language === "en-US"
@@ -844,7 +898,7 @@ export default function Home() {
                       </span>
                     </label>
                     {formErrors.lgpd && (
-                      <span className="field-error" style={{ marginTop: "6px" }}>
+                      <span id="contact-lgpd-error" className="field-error" role="alert" style={{ marginTop: "6px" }}>
                         <AlertCircle size={13} /> {formErrors.lgpd}
                       </span>
                     )}
