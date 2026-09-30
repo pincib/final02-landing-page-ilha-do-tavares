@@ -27,8 +27,41 @@ import {
 import LanguageSelectorDropdown from "@/components/ui/language-selector-dropdown";
 import { ViewOnMap } from "@/components/watermelon/view-on-map";
 import { LegalModal, type LegalTab } from "@/components/LegalModal";
+import CoverflowCarousel, { type CoverflowCarouselItem } from "@/components/ui/coverflow-carousel";
 
 const HERO_IMAGE = "/assets/hero-ilha.jpg";
+const CAROUSEL_IMAGES = [
+  {
+    id: "1",
+    image: "/assets/carousel/1.jpg",
+    altPt: "Vista aérea panorâmica da Ilha do Tavares na Baía de Guanabara",
+    altEn: "Aerial panoramic view of Tavares Island in Guanabara Bay",
+  },
+  {
+    id: "2",
+    image: "/assets/carousel/2.jpg",
+    altPt: "Proximidade entre a Ilha do Tavares, Gradim e a rodovia BR-101",
+    altEn: "Proximity between Tavares Island, Gradim and BR-101 highway",
+  },
+  {
+    id: "3",
+    image: "/assets/carousel/3.jpg",
+    altPt: "Extensão longitudinal da orla e relevo natural da Ilha do Tavares",
+    altEn: "Longitudinal shoreline extension and natural topography of Tavares Island",
+  },
+  {
+    id: "4",
+    image: "/assets/carousel/4.jpg",
+    altPt: "Perspectiva aérea ampla da Ilha do Tavares e bacia de manobra",
+    altEn: "Wide aerial perspective of Tavares Island and surrounding waterways",
+  },
+  {
+    id: "5",
+    image: "/assets/carousel/5.jpg",
+    altPt: "Detalhe do platô e da faixa costeira navegável da Ilha do Tavares",
+    altEn: "Detailed view of plateau and navigable frontage of Tavares Island",
+  },
+] as const;
 const REGIONAL_IMAGE = "/assets/regional-ilha.jpg";
 const LOGO_IMAGE = "/assets/logo-pinciara.png";
 const CONTACT_IMAGE = "/assets/luiz-pinciara.png";
@@ -57,6 +90,10 @@ const englishCopy: Record<string, string> = {
   "Qualquer desenvolvimento depende de regularização patrimonial, viabilidade técnica e licenciamento.": "Any development depends on title regularization, technical feasibility, and licensing.",
   "Solicitar conversa inicial": "Request initial meeting", "Ver enquadramento da oportunidade": "View opportunity overview", "SCROLL": "SCROLL",
   "A OPORTUNIDADE": "THE OPPORTUNITY", "Uma presença insular a considerar na baía.": "A distinctive island asset to consider in the bay.",
+  "PERSPECTIVAS AÉREAS": "AERIAL PERSPECTIVES",
+  "Conheça a Ilha do Tavares em todos os ângulos.": "Explore Tavares Island from every angle.",
+  "Vistas aéreas detalhadas evidenciando navegabilidade, topografia, orla marítima e proximidade do continente.": "Detailed aerial views highlighting maritime access, topography, shoreline perimeter, and continental proximity.",
+  "Galeria Aérea da Ilha do Tavares": "Tavares Island Aerial Showcase",
   "Um ativo para avaliação de investidores e operadores da cadeia naval, logística e offshore, com alternativas de uso a confirmar.": "An asset for investors and operators in the naval, logistics, and offshore supply chain, with uses subject to confirmation.",
   "Tese comercial": "Commercial thesis", "Condição de uso": "Conditions of use",
   "Inserida na Baía de Guanabara, próxima ao Gradim e conectada por via marítima a Niterói e ao Rio de Janeiro.": "Located in Guanabara Bay, near Gradim and connected by sea to Niterói and Rio de Janeiro.",
@@ -206,6 +243,15 @@ export default function Home() {
   const activeApplication = useMemo(
     () => applicationProfiles.find((profile) => profile.id === activeProfile) ?? applicationProfiles[0],
     [activeProfile],
+  );
+  const carouselItems: CoverflowCarouselItem[] = useMemo(
+    () =>
+      CAROUSEL_IMAGES.map((item) => ({
+        id: item.id,
+        image: item.image,
+        alt: language === "en-US" ? item.altEn : item.altPt,
+      })),
+    [language]
   );
   const t = (text: string) => language === "en-US" ? englishCopy[text] ?? text : text;
 
@@ -501,7 +547,24 @@ export default function Home() {
               <span>USO SUJEITO A DUE DILIGENCE</span>
             </div>
           </div>
-          <a className="scroll-cue" href="#oportunidade" aria-label={t("Descer para A oportunidade")}><span>SCROLL</span><ChevronDown size={18} /></a>
+          <a className="scroll-cue" href="#galeria-aerea" aria-label={t("Descer para Galeria da ilha")}><span>SCROLL</span><ChevronDown size={18} /></a>
+        </section>
+
+        <section id="galeria-aerea" className="carousel-showcase-section" aria-label={language === "en-US" ? "Tavares Island Aerial Showcase" : "Galeria Aérea da Ilha do Tavares"}>
+          <div className="container">
+            <div className="carousel-showcase-header">
+              <span className="eyebrow">{language === "en-US" ? "AERIAL PERSPECTIVES" : "PERSPECTIVAS AÉREAS"}</span>
+              <h2>{language === "en-US" ? "Explore Tavares Island from every angle." : "Conheça a Ilha do Tavares em todos os ângulos."}</h2>
+              <p>{language === "en-US" ? "Detailed aerial views highlighting maritime access, topography, shoreline perimeter, and continental proximity." : "Vistas aéreas detalhadas evidenciando navegabilidade, topografia, orla marítima e proximidade do continente."}</p>
+            </div>
+            <CoverflowCarousel
+              items={carouselItems}
+              loop
+              autoplay
+              prevLabel={language === "en-US" ? "Prev" : "Anterior"}
+              nextLabel={language === "en-US" ? "Next" : "Próximo"}
+            />
+          </div>
         </section>
 
         <section className="section section-dark" id="oportunidade">
