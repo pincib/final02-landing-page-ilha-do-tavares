@@ -38,7 +38,7 @@ interface DragInfo {
 const DEFAULT_DEPTH = 210;
 const DEFAULT_ROTATION = 45;
 const DEFAULT_SPACING = 310;
-const DEFAULT_SCALE_STEP = 0.15;
+const DEFAULT_SCALE_STEP = 0.151;
 const DEFAULT_AUTOPLAY_DELAY = 4000;
 const SWIPE_VELOCITY_THRESHOLD = 500;
 const SWIPE_DISTANCE_THRESHOLD = 80;
@@ -189,12 +189,12 @@ const CoverflowCarousel = ({
                 shouldReduceMotion
                   ? { opacity: isActive ? 1 : 0, x: translateX }
                   : {
-                      opacity: 1,
-                      rotateY,
-                      scale,
-                      x: translateX,
-                      z: translateZ,
-                    }
+                    opacity: 1,
+                    rotateY,
+                    scale,
+                    x: translateX,
+                    z: translateZ,
+                  }
               }
               aria-hidden={!isActive}
               className="absolute h-[290px] w-[340px] max-w-[88vw] sm:h-[370px] sm:w-[554px] md:h-[396px] md:w-[608px] overflow-hidden rounded-2xl border border-[rgba(255,187,0,0.3)] bg-[#121212] shadow-2xl"
