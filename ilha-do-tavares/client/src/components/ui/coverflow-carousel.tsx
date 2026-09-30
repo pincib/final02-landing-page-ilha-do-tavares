@@ -35,9 +35,9 @@ interface DragInfo {
   velocity: { x: number; y: number };
 }
 
-const DEFAULT_DEPTH = 180;
+const DEFAULT_DEPTH = 210;
 const DEFAULT_ROTATION = 45;
-const DEFAULT_SPACING = 260;
+const DEFAULT_SPACING = 310;
 const DEFAULT_SCALE_STEP = 0.15;
 const DEFAULT_AUTOPLAY_DELAY = 4000;
 const SWIPE_VELOCITY_THRESHOLD = 500;
@@ -154,12 +154,12 @@ const CoverflowCarousel = ({
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       role="region"
-      style={{ perspective: shouldReduceMotion ? undefined : 1200 }}
+      style={{ perspective: shouldReduceMotion ? undefined : 1400 }}
       // biome-ignore lint/a11y/noNoninteractiveTabindex: this WAI-ARIA APG carousel widget intentionally accepts focus so ArrowLeft/ArrowRight can move slides while the region is focused (in addition to the Previous/Next buttons below); removing tabIndex would remove that keyboard-navigation path entirely.
       tabIndex={0}
     >
       <motion.div
-        className="relative mx-auto flex h-[375px] sm:h-[440px] items-center justify-center"
+        className="relative mx-auto flex h-[440px] sm:h-[520px] items-center justify-center"
         drag={total > 1 && !shouldReduceMotion ? "x" : false}
         dragConstraints={{ left: 0, right: 0 }}
         dragElastic={0.12}
@@ -197,7 +197,7 @@ const CoverflowCarousel = ({
                     }
               }
               aria-hidden={!isActive}
-              className="absolute h-[242px] w-[330px] sm:h-[308px] sm:w-[462px] md:h-[330px] md:w-[506px] overflow-hidden rounded-2xl border border-[rgba(255,187,0,0.3)] bg-[#121212] shadow-2xl"
+              className="absolute h-[290px] w-[340px] max-w-[88vw] sm:h-[370px] sm:w-[554px] md:h-[396px] md:w-[608px] overflow-hidden rounded-2xl border border-[rgba(255,187,0,0.3)] bg-[#121212] shadow-2xl"
               key={item.id}
               style={{
                 transformStyle: "preserve-3d",
