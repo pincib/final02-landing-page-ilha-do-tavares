@@ -1,8 +1,13 @@
+import { useEffect } from "react";
 import { ArrowLeft, Compass } from "lucide-react";
 import { useLocation } from "wouter";
 
 export default function NotFound() {
   const [, setLocation] = useLocation();
+
+  useEffect(() => {
+    document.title = "404 — Página não encontrada | Ilha do Tavares";
+  }, []);
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-[#050505] text-white px-4">

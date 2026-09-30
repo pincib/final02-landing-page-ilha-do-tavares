@@ -187,7 +187,9 @@ export default function Home() {
 
   useEffect(() => {
     document.documentElement.lang = language;
-    document.title = language === "en-US" ? "Tavares Island — Island asset in Guanabara Bay | Pinciara" : "Ilha do Tavares — Ativo insular na Baía de Guanabara | Pinciara";
+    document.title = language === "en-US"
+      ? "Tavares Island — Strategic Island Asset in Guanabara Bay | Pinciara"
+      : "Ilha do Tavares — Ativo Insular Estratégico na Baía de Guanabara | Pinciara";
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
     let node: Text | null;
     while ((node = walker.nextNode() as Text | null)) {

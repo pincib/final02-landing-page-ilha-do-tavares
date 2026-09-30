@@ -11,6 +11,8 @@ build/
 # Environment variables
 .env
 .env.*
+.env.local
+.env.*.local
 !.env.example
 
 # IDE & Editor
@@ -36,6 +38,10 @@ pnpm-debug.log*
 
 # Vercel
 .vercel/
+
+# Coverage
+coverage/
+*.lcov
 
 # Temporary
 tmp/
