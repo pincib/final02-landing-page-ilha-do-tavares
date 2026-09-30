@@ -2,6 +2,7 @@
   "name": "final02-landing-page-ilha-do-tavares",
   "version": "1.0.0",
   "private": true,
+  "packageManager": "pnpm@10.4.1",
   "scripts": {
     "dev": "npm --prefix ilha-do-tavares run dev",
     "build": "npm --prefix ilha-do-tavares run build:vercel",
