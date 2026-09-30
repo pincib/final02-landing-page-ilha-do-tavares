@@ -47,47 +47,48 @@ const navItems = [
 ] as const;
 
 const englishCopy: Record<string, string> = {
-  "A oportunidade": "The opportunity", "Contexto": "Context", "Localização": "Location", "Aplicações": "Applications", "Contato": "Contact",
-  "ILHA DO TAVARES": "TAVARES ISLAND", "Baía de Guanabara · Gradim, São Gonçalo": "Guanabara Bay · Gradim, São Gonçalo",
-  "Falar com responsável": "Speak with the representative", "ATIVO INSULAR · BAÍA DE GUANABARA · GRADIM, SÃO GONÇALO": "ISLAND ASSET · GUANABARA BAY · GRADIM, SÃO GONÇALO",
-  "Potencial logístico, naval e offshore na Baía de Guanabara.": "Logistics, naval and offshore potential in Guanabara Bay.",
-  "Venda, arrendamento ou parceria estratégica.": "Sale, lease or strategic partnership.",
+  "A oportunidade": "The opportunity", "Contexto": "Context", "Localização": "Location", "Aplicações": "Applications", "Projetos": "Projects", "Contato": "Contact",
+  "ILHA DO TAVARES": "TAVARES ISLAND", "Ilha do Tavares": "Tavares Island", "Baía de Guanabara · Gradim, São Gonçalo": "Guanabara Bay · Gradim, São Gonçalo",
+  "Falar com responsável": "Speak with representative", "ATIVO INSULAR · BAÍA DE GUANABARA · GRADIM, SÃO GONÇALO": "ISLAND ASSET · GUANABARA BAY · GRADIM, SÃO GONÇALO",
+  "Potencial logístico, naval e offshore na Baía de Guanabara.": "Logistics, naval, and offshore potential in Guanabara Bay.",
+  "Venda, arrendamento ou parceria estratégica.": "Sale, lease, or strategic partnership.",
   "Ativo para avaliação de investidores e operadores. ": "Asset for investor and operator assessment. ",
-  "Qualquer desenvolvimento depende de regularização patrimonial, viabilidade técnica e licenciamento.": "Any development depends on title regularization, technical feasibility and licensing.",
-  "Solicitar conversa inicial": "Request an initial conversation", "Ver enquadramento da oportunidade": "View opportunity overview", "SCROLL": "SCROLL",
-  "A OPORTUNIDADE": "THE OPPORTUNITY", "Uma presença insular a considerar na baía.": "An island presence to consider in the bay.",
-  "Um ativo para avaliação de investidores e operadores da cadeia naval, logística e offshore, com alternativas de uso a confirmar.": "An asset for investors and operators in the naval, logistics and offshore value chain, with uses to be confirmed.",
+  "Ativo para avaliação de investidores e operadores.": "Asset for investor and operator assessment.",
+  "Qualquer desenvolvimento depende de regularização patrimonial, viabilidade técnica e licenciamento.": "Any development depends on title regularization, technical feasibility, and licensing.",
+  "Solicitar conversa inicial": "Request initial meeting", "Ver enquadramento da oportunidade": "View opportunity overview", "SCROLL": "SCROLL",
+  "A OPORTUNIDADE": "THE OPPORTUNITY", "Uma presença insular a considerar na baía.": "A distinctive island asset to consider in the bay.",
+  "Um ativo para avaliação de investidores e operadores da cadeia naval, logística e offshore, com alternativas de uso a confirmar.": "An asset for investors and operators in the naval, logistics, and offshore supply chain, with uses subject to confirmation.",
   "Tese comercial": "Commercial thesis", "Condição de uso": "Conditions of use",
   "Inserida na Baía de Guanabara, próxima ao Gradim e conectada por via marítima a Niterói e ao Rio de Janeiro.": "Located in Guanabara Bay, near Gradim and connected by sea to Niterói and Rio de Janeiro.",
-  "Possível apoio offshore, logística, manutenção leve, armazenagem e serviços náuticos de baixo impacto.": "Potential offshore support, logistics, light maintenance, storage and low-impact nautical services.",
-  "CONTEXTO": "CONTEXT", "CENÁRIO DE MERCADO": "MARKET CONTEXT", "Crescimento do petróleo offshore no Brasil.": "Growth of offshore oil in Brazil.",
-  "A tese depende de confirmação actualizada de mercado.": "The thesis depends on updated market confirmation.", "Cenário optimista descrito no material.": "Optimistic scenario described in the material.",
-  "POLO REGIONAL": "REGIONAL HUB", "Baía de Guanabara: polo naval e offshore.": "Guanabara Bay: a naval and offshore hub.",
+  "Possível apoio offshore, logística, manutenção leve, armazenagem e serviços náuticos de baixo impacto.": "Potential offshore support, logistics, light maintenance, storage, and low-impact nautical services.",
+  "CONTEXTO": "CONTEXT", "CENÁRIO DE MERCADO": "MARKET CONTEXT", "Crescimento do petróleo offshore no Brasil.": "Offshore oil expansion in Brazil.",
+  "A tese depende de confirmação atualizada de mercado.": "The thesis depends on updated market confirmation.", "Cenário otimista descrito no material.": "Optimistic scenario described in institutional materials.",
+  "POLO REGIONAL": "REGIONAL HUB", "Baía de Guanabara: polo naval e offshore.": "Guanabara Bay: naval and offshore hub.",
   "LOCALIZAÇÃO": "LOCATION", "Localização estratégica.": "Strategic location.", "Dados do ativo": "Asset data", "Distância do continente": "Distance from mainland", "Área da ilha": "Island area", "Base de apoio no continente": "Mainland support base",
-  "BENEFÍCIOS": "BENEFITS", "Benefícios logísticos potenciais.": "Potential logistics benefits.", "APLICAÇÕES": "APPLICATIONS", "Aplicações em estudo.": "Applications under study.",
-  "Operador offshore": "Offshore operator", "Estaleiro": "Shipyard", "Investidor imobiliário": "Real estate investor", "Apoio offshore e naval": "Offshore and naval support",
-  "PROSPECÇÃO": "OUTREACH", "Empresas para prospecção.": "Companies for outreach.", "Perfis de interlocução para uma conversa comercial inicial.": "Potential counterparts for an initial commercial conversation.",
+  "BENEFÍCIOS": "BENEFITS", "Benefícios logísticos potenciais.": "Potential logistics advantages.", "APLICAÇÕES": "APPLICATIONS", "Aplicações em estudo.": "Applications under study.",
+  "Operador offshore": "Offshore operator", "Estaleiro": "Shipyard", "Investidor imobiliário": "Real estate investor", "Apoio offshore e naval": "Offshore & naval support",
+  "PROSPECÇÃO": "OUTREACH", "Empresas para prospecção.": "Target companies for outreach.", "Perfis de interlocução para uma conversa comercial inicial.": "Key industry profiles for an initial commercial discussion.",
   "DIFERENCIAIS": "DIFFERENTIATORS", "Diferenciais competitivos.": "Competitive differentiators.", "PROPOSTA": "PROPOSITION", "Proposta de valor para investidores.": "Value proposition for investors.",
-  "Condições comerciais": "Commercial terms", "Venda": "Sale", "Locação": "Lease", "Condições e prazo sob consulta.": "Terms and duration upon request.",
-  "CHAMADA PARA INVESTIDORES": "INVESTOR CALL", "Uma próxima conversa pode começar por uma visita técnica.": "The next conversation can begin with a technical visit.",
-  "CONTATO": "CONTACT", "PRÓXIMO PASSO": "NEXT STEP", "Falar com responsável.": "Speak with the representative.",
-  "Preencher formulário": "Complete the form", "Nome*": "Name*", "Empresa*": "Company*", "Telefone*": "Phone*", "Enviar mensagem": "Send message",
+  "Condições comerciais": "Commercial terms", "Venda": "Sale", "Locação": "Lease", "Condições e prazo sob consulta.": "Terms and lease duration upon request.",
+  "CHAMADA PARA INVESTIDORES": "INVESTOR CALL", "Uma próxima conversa pode começar por uma visita técnica.": "The next step can begin with a site visit.",
+  "CONTATO": "CONTACT", "PRÓXIMO PASSO": "NEXT STEP", "Falar com responsável.": "Speak with representative.",
+  "Preencher formulário": "Fill out the form", "Nome*": "Name*", "Empresa*": "Company*", "Telefone*": "Phone*", "Enviar mensagem": "Send message",
   "Política de Privacidade": "Privacy Policy", "Termos de Uso": "Terms of Use", "Solicitar eliminação de dados": "Request data deletion", "PRIVACIDADE": "PRIVACY", "Aceitar": "Accept", "Agora não": "Not now",
-  "Navegação principal": "Primary navigation", "Saltar para o conteúdo": "Skip to content", "Identificação da oportunidade": "Opportunity identification", "DOCUMENTO INSTITUCIONAL": "INSTITUTIONAL DOCUMENT", "USO SUJEITO A DUE DILIGENCE": "USE SUBJECT TO DUE DILIGENCE", "Descer para A oportunidade": "Go to The opportunity",
-  "A expansão do Pré-Sal demanda embarcações de suprimento, bases logísticas, manutenção naval, equipamentos submarinos, inspecção, armazenagem, transporte marítimo, resposta ambiental e descomissionamento.": "Pre-salt expansion requires supply vessels, logistics bases, naval maintenance, subsea equipment, inspection, storage, maritime transport, environmental response and decommissioning.",
-  "milhões de barris/dia": "million barrels/day", "Investidores citados": "Named investors", "Escopo operacional": "Operational scope", "Campos citados": "Named fields", "FPSOs, poços, linhas submarinas, escoamento, reinjecção de gás e CO2, equipamentos e manutenção.": "FPSOs, wells, subsea lines, production flow, gas and CO2 reinjection, equipment and maintenance.", "Búzios, Mero, Atapu, Sépia, Tupi, Itapu, Raia, Campos, cessão onerosa e novas áreas.": "Búzios, Mero, Atapu, Sépia, Tupi, Itapu, Raia, Campos, transfer-of-rights areas and new areas.", "Búzios e Mero aparecem no material como projectos relevantes para a expansão e para a cadeia de serviços.": "Búzios and Mero are described in the material as relevant projects for expansion and the services value chain.",
-  "O entorno reúne estaleiros, oficinas navais, empresas de engenharia, bases de apoio, infraestrutura portuária e mão de obra especializada.": "The surrounding area includes shipyards, naval workshops, engineering companies, support bases, port infrastructure and specialized labor.", "Niterói, São Gonçalo e Rio de Janeiro têm tradição em construção, reparo, conversão e manutenção de embarcações e plataformas.": "Niterói, São Gonçalo and Rio de Janeiro have a tradition in the construction, repair, conversion and maintenance of vessels and platforms.", "A condição atual dos ativos, obras e contratos requer confirmação independente.": "The current condition of assets, works and contracts requires independent confirmation.",
-  "BAÍA DE GUANABARA": "GUANABARA BAY", "MAPA ONLINE": "ONLINE MAP", "Baía de Guanabara · Rio de Janeiro": "Guanabara Bay · Rio de Janeiro", "Mapa online da localização": "Online location map", "Gradim e São Gonçalo": "Gradim and São Gonçalo", "Conexão com áreas costeiras, oficinas, armazéns e prestadores de serviços.": "Connection to coastal areas, workshops, warehouses and service providers.", "Niterói e Rio de Janeiro": "Niterói and Rio de Janeiro", "Acesso marítimo a centros navais, corporativos e de suporte industrial.": "Maritime access to naval, corporate and industrial-support centers.", "Porto do Rio e corredores regionais": "Port of Rio and regional corridors", "Possibilidade de apoio complementar para suprimentos, equipamentos e transporte.": "Potential complementary support for supplies, equipment and transportation.", "0,5 milha náutica": "0.5 nautical mile", "356.750 m²": "356,750 m²", "Atracação, profundidade, infraestrutura e autorizações exigem estudos específicos.": "Berthing, depth, infrastructure and permits require specific studies.",
-  "Uma leitura de complementaridade, sempre sujeita à verificação de operação e acessos.": "A complementary perspective, always subject to verification of operations and access.", "Gradim e cadeia naval": "Gradim and the naval value chain", "Ligação com áreas terrestres, oficinas, armazéns, fornecedores e mão de obra especializada.": "Connection to land areas, workshops, warehouses, suppliers and specialized labor.", "Baía e Porto do Rio": "Bay and Port of Rio", "Conexão marítima com Niterói, Rio e demais áreas da baía, com apoio complementar de suprimentos.": "Maritime connection to Niterói, Rio and other areas of the bay, with complementary supply support.", "Integração multimodal": "Multimodal integration", "Possível conexão entre transporte marítimo e rodoviário, sujeita à verificação de operação e acessos.": "Potential connection between maritime and road transportation, subject to verification of operations and access.", "A área também pode ser avaliada para monitorização, pesquisa, educação ambiental e recuperação ecológica.": "The area may also be assessed for monitoring, research, environmental education and ecological restoration.",
-  "Selecione um perfil de operador para reorganizar a leitura do bloco, sem substituir a etapa de estudos.": "Select an operator profile to tailor this section without replacing the assessment phase.", "Aplicações por perfil de operador": "Applications by operator profile", "Escala de embarcações, armazenagem temporária, apoio a inspecção, manutenção leve, ROV e mergulho profissional.": "Vessel staging, temporary storage, inspection support, light maintenance, ROV and professional diving.", "Descomissionamento": "Decommissioning", "Recebimento, triagem e armazenagem temporária de equipamentos e materiais, mediante licenciamento específico.": "Receiving, sorting and temporary storage of equipment and materials, subject to specific licensing.", "Ambiental e corporativo": "Environmental and corporate", "Monitorização da baía, pesquisa, treinamento, eventos corporativos e turismo náutico de baixo impacto.": "Bay monitoring, research, training, corporate events and low-impact nautical tourism.", "Cada aplicação requer estudo de demanda, engenharia, impacto ambiental, navegabilidade e modelo de operação.": "Each application requires study of demand, engineering, environmental impact, navigability and operating model.",
-  "PROJETOS": "PROJECTS", "Projetos conceituais para leitura estratégica da ilha.": "Conceptual projects for a strategic reading of the island.", "Uma visão territorial para organizar possibilidades de ocupação, sempre sujeitas à diligência e aos estudos aplicáveis.": "A territorial view to organize potential uses, always subject to due diligence and the applicable studies.", "Áreas de influência da Ilha do Tavares": "Areas of influence of Tavares Island", "Imagem aérea da Ilha do Tavares com áreas de influência": "Aerial image of Tavares Island with areas of influence", "Referências de influência": "Influence references", "Ilha D’Água · Transpetro": "Ilha D’Água · Transpetro", "1 milha náutica": "1 nautical mile", "Refinaria Duque de Caxias": "Duque de Caxias Refinery", "8 milhas náuticas": "8 nautical miles", "Porto do Rio": "Port of Rio", "7 milhas náuticas": "7 nautical miles", "BR-101": "BR-101", "500 m": "500 m", "GASOLUB": "GASOLUB", "35 km": "35 km", "Ilha Redonda · Transpetro": "Ilha Redonda · Transpetro", "3 milhas náuticas": "3 nautical miles", "Distâncias indicadas na imagem de referência e sujeitas a confirmação técnica.": "Distances shown in the reference image and subject to technical confirmation.", "Conceito principal": "Main concept", "Terminal marítimo multidisciplinar.": "Multidisciplinary maritime terminal.", "Uma proposta de terminal privado para integrar atracação, apoio offshore, logística e serviços operacionais em uma leitura única do ativo.": "A private terminal proposal that brings together berthing, offshore support, logistics and operational services in a unified reading of the asset.", "Prancha conceitual do terminal marítimo multidisciplinar": "Concept board for the multidisciplinary maritime terminal", "Cais e atracação": "Berths and docking", "Tancagem e armazenagem": "Tank storage and warehousing", "Apoio offshore e reparos leves": "Offshore support and light repairs", "Pátio, edifício operacional e segurança": "Yard, operational building and security", "Frentes complementares": "Complementary directions", "Hub náutico e de serviços": "Nautical and services hub", "Apoio a embarcações, suprimentos, manutenção leve e treinamento operacional, em escala compatível com os estudos de acesso e navegabilidade.": "Vessel support, supplies, light maintenance and operational training, at a scale compatible with access and navigability studies.", "Reserva operacional e ambiental": "Operational and environmental reserve", "Monitoramento da baía, pesquisa, educação ambiental e ocupação de baixo impacto como parte da leitura de preservação e uso responsável.": "Bay monitoring, research, environmental education and low-impact occupation as part of a preservation and responsible-use approach.", "Estudos conceituais para avaliação estratégica. Qualquer implantação depende de diligência patrimonial, viabilidade técnica, ambiental, navegabilidade, licenciamento e aprovações aplicáveis.": "Conceptual studies for strategic assessment. Any implementation depends on title due diligence, technical and environmental feasibility, navigability, licensing and applicable approvals.",
-  "Apoio marítimo": "Maritime support", "Subsea e engenharia": "Subsea and engineering", "Logística e conformidade": "Logistics and compliance", "Monjasa, Blue Water Shipping, DNV, Bureau Veritas, ABS e empresas de inspecção.": "Monjasa, Blue Water Shipping, DNV, Bureau Veritas, ABS and inspection companies.", "Operadoras como Petrobras, Shell, Equinor, TotalEnergies, BP, ExxonMobil, Prio, Trident, Enauta e PetroReconcavo podem ser clientes indirectos ou contratantes.": "Operators such as Petrobras, Shell, Equinor, TotalEnergies, BP, ExxonMobil, Prio, Trident, Enauta and PetroReconcavo may be indirect clients or contracting parties.",
-  "Localização marítima": "Maritime location", "Acesso directo à Baía de Guanabara e possibilidade de complementar instalações terrestres.": "Direct access to Guanabara Bay and potential to complement land-based facilities.", "Ecossistema industrial": "Industrial ecosystem", "Proximidade de estaleiros, fornecedores, mão de obra naval e empresas de engenharia.": "Proximity to shipyards, suppliers, naval labor and engineering companies.", "Usos diversificados": "Diversified uses", "Apoio offshore, logística, manutenção, pesquisa, turismo e gestão ambiental, conforme viabilidade.": "Offshore support, logistics, maintenance, research, tourism and environmental management, subject to feasibility.", "A demanda por inspecção, manutenção, segurança, gestão ambiental e descomissionamento pode persistir ao longo da transição energética.": "Demand for inspection, maintenance, safety, environmental management and decommissioning may persist throughout the energy transition.",
-  "Presença na Baía de Guanabara, próxima a um ecossistema naval e offshore consolidado.": "Presence in Guanabara Bay, near an established naval and offshore ecosystem.", "Localização diferenciada": "Distinctive location", "Ativo insular com potencial de acesso marítimo e proximidade de fornecedores e clientes.": "Island asset with potential maritime access and proximity to suppliers and clients.", "Flexibilidade comercial": "Commercial flexibility", "Venda, arrendamento, parceria operacional ou desenvolvimento sob medida.": "Sale, lease, operating partnership or tailored development.", "Infraestrutura especializada": "Specialized infrastructure", "Possibilidade de desenvolver uma operação complementar, conforme estudos e aprovações.": "Potential to develop a complementary operation, subject to studies and approvals.", "Perfis prioritários": "Priority profiles", "Operadores offshore, apoio marítimo, logística, serviços submarinos, estaleiros, descomissionamento e tecnologia marítima.": "Offshore operators, maritime support, logistics, subsea services, shipyards, decommissioning and maritime technology.", "Formatos disponíveis": "Available formats", "Venda, arrendamento de longo prazo, parceria operacional, joint venture e desenvolvimento sob medida.": "Sale, long-term lease, operating partnership, joint venture and tailored development.", "Próximo contacto": "Next contact", "Visita técnica, definição da tese de uso e encaminhamento da diligência documental, técnica e ambiental.": "Technical visit, definition of the use thesis and referral for documentary, technical and environmental due diligence.", "A lista de perfis representa público-alvo comercial, não interesse já manifestado.": "The list of profiles represents a commercial target audience, not already expressed interest.",
-  "Para agendar visita técnica ou solicitar informação adicional sobre o ativo, preencha o formulário ao lado. Ao enviar, abriremos o WhatsApp com os dados preenchidos para iniciar a conversa.": "To schedule a technical visit or request additional information about the asset, complete the form alongside. On submission, WhatsApp will open with your details to begin the conversation.", "Preencha este campo.": "Complete this field.", "Introduza um e-mail válido.": "Enter a valid email address.", "Autorizo o contacto da Pinciara Imóveis Exclusivos para fins de prospecção comercial. Posso solicitar eliminação dos dados a qualquer momento.": "I authorize Pinciara Imóveis Exclusivos to contact me for commercial outreach. I may request deletion of my data at any time.", "O WhatsApp foi aberto com os dados preenchidos para iniciar a conversa.": "WhatsApp has opened with your details to begin the conversation.",
-  "Ilha do Tavares · Gradim, São Gonçalo · Rio de Janeiro — Brasil.": "Tavares Island · Gradim, São Gonçalo · Rio de Janeiro — Brazil.", "© 2026 Pinciara Imóveis Exclusivos. Todos os direitos reservados.": "© 2026 Pinciara Imóveis Exclusivos. All rights reserved.", "Documento institucional. Uso sujeito a due diligence.": "Institutional document. Use subject to due diligence.", "Voltar ao topo": "Back to top", "Consentimento": "Consent"
-  , "Ativo para avaliação de investidores e operadores.": "Asset for investor and operator assessment.", "Ver no mapa online": "View online map", "Carregando mapa": "Loading map", "Fechar mapa": "Close map", "Fechar menu": "Close menu", "Abrir menu": "Open menu", "Chamada para investidores": "INVESTOR CALL", "— Operadores offshore, apoio marítimo, logística, serviços submarinos, estaleiros, descomissionamento e tecnologia marítima.": "— Offshore operators, maritime support, logistics, subsea services, shipyards, decommissioning and maritime technology.", "— Venda, arrendamento de longo prazo, parceria operacional, joint venture e desenvolvimento sob medida.": "— Sale, long-term lease, operating partnership, joint venture and tailored development.", "— Visita técnica, definição da tese de uso e encaminhamento da diligência documental, técnica e ambiental.": "— Technical visit, definition of the use thesis and referral for documentary, technical and environmental due diligence."
-  , "Projetos": "Projects", "Ilha do Tavares": "Tavares Island", "Conversar diretamente no WhatsApp": "Chat directly on WhatsApp", "Baixar Pitch Deck Oficial (PDF)": "Download Official Pitch Deck (PDF)", "Baixar Pitch Deck": "Download Pitch Deck", "Enviar outra mensagem": "Send another message", "Mensagem pronta no WhatsApp!": "Message ready on WhatsApp!", "Abrimos o WhatsApp com seus dados preenchidos.": "WhatsApp was opened with your pre-filled details.", "Se a janela não abriu automaticamente, toque no botão abaixo para iniciar a conversa com Luiz Pinciara.": "If the window didn't open automatically, tap the button below to start the conversation with Luiz Pinciara.", "Abrir WhatsApp agora": "Open WhatsApp now", "Por favor, informe seu nome.": "Please enter your name.", "Por favor, informe sua empresa.": "Please enter your company.", "Por favor, insira um e-mail válido.": "Please enter a valid email address.", "Por favor, informe seu telefone com DDD.": "Please enter your phone number.", "Telefone incompleto (mínimo 10 dígitos com DDD).": "Incomplete phone number (at least 10 digits).", "É necessário autorizar o contato para prosseguir.": "You must authorize contact to proceed.", "Abrir termos de privacidade": "Open privacy terms"
+  "Navegação principal": "Primary navigation", "Pular para o conteúdo": "Skip to main content", "Identificação da oportunidade": "Opportunity identification", "DOCUMENTO INSTITUCIONAL": "INSTITUTIONAL DOCUMENT", "USO SUJEITO A DUE DILIGENCE": "SUBJECT TO DUE DILIGENCE", "Descer para A oportunidade": "Scroll to The opportunity",
+  "A expansão do Pré-Sal demanda embarcações de suprimento, bases logísticas, manutenção naval, equipamentos submarinos, inspeção, armazenagem, transporte marítimo, resposta ambiental e descomissionamento.": "Pre-salt oil expansion drives demand for supply vessels, logistics bases, naval maintenance, subsea equipment, inspection, warehousing, maritime transport, environmental response, and decommissioning.",
+  "milhões de barris/dia": "million barrels/day", "Investidores citados": "Industry players cited", "Escopo operacional": "Operational scope", "Campos citados": "Offshore fields cited", "FPSOs, poços, linhas submarinas, escoamento, reinjeção de gás e CO2, equipamentos e manutenção.": "FPSOs, wells, subsea flowlines, gas and CO2 reinjection, specialized equipment, and maintenance.", "Búzios, Mero, Atapu, Sépia, Tupi, Itapu, Raia, Campos, cessão onerosa e novas áreas.": "Búzios, Mero, Atapu, Sépia, Tupi, Itapu, Raia, Campos, transfer-of-rights areas, and frontier blocks.", "Búzios e Mero aparecem no material como projetos relevantes para a expansão e para a cadeia de serviços.": "Búzios and Mero stand out as anchor projects driving offshore support and maritime service chains.",
+  "O entorno reúne estaleiros, oficinas navais, empresas de engenharia, bases de apoio, infraestrutura portuária e mão de obra especializada.": "The surrounding area concentrates shipyards, naval workshops, engineering firms, offshore support bases, port infrastructure, and specialized labor.", "Niterói, São Gonçalo e Rio de Janeiro têm tradição em construção, reparo, conversão e manutenção de embarcações e plataformas.": "Niterói, São Gonçalo, and Rio de Janeiro have a proven legacy in shipbuilding, repair, conversion, and platform maintenance.", "A condição atual dos ativos, obras e contratos requer confirmação independente.": "The current condition of assets, site structures, and agreements requires independent due diligence.",
+  "BAÍA DE GUANABARA": "GUANABARA BAY", "MAPA ONLINE": "ONLINE MAP", "Baía de Guanabara · Rio de Janeiro": "Guanabara Bay · Rio de Janeiro", "Mapa online da localização": "Interactive location map", "Gradim e São Gonçalo": "Gradim and São Gonçalo", "Conexão com áreas costeiras, oficinas, armazéns e prestadores de serviços.": "Direct link to coastal industrial zones, fabrication yards, warehouses, and marine service contractors.", "Niterói e Rio de Janeiro": "Niterói and Rio de Janeiro", "Acesso marítimo a centros navais, corporativos e de suporte industrial.": "Fast maritime access to premier naval, corporate, and offshore operations hubs.", "Porto do Rio e corredores regionais": "Port of Rio and regional freight corridors", "Possibilidade de apoio complementar para suprimentos, equipamentos e transporte.": "Capability for complementary staging of offshore supplies, heavy equipment, and crew logistics.", "0,5 milha náutica": "0.5 nautical mile", "356.750 m²": "356,750 m² (approx. 88 acres)", "Atracação, profundidade, infraestrutura e autorizações exigem estudos específicos.": "Berthing depth, draft constraints, civil infrastructure, and regulatory permits require dedicated engineering studies.",
+  "Uma leitura de complementaridade, sempre sujeita à verificação de operação e acessos.": "A complementary logistics assessment, subject to maritime access and operational verification.", "Gradim e cadeia naval": "Gradim and the naval supply chain", "Ligação com áreas terrestres, oficinas, armazéns, fornecedores e mão de obra especializada.": "Direct mainland connection to industrial supply yards, specialized machine shops, and marine technicians.", "Baía e Porto do Rio": "Guanabara Bay and Port of Rio", "Conexão marítima com Niterói, Rio e demais áreas da baía, com apoio complementar de suprimentos.": "Strategic maritime link to Niterói, Rio de Janeiro, and bay terminals for supply and logistics support.", "Integração multimodal": "Multimodal connectivity", "Possível conexão entre transporte marítimo e rodoviário, sujeita à verificação de operação e acessos.": "Feasible synergy between marine freight and federal highway BR-101, subject to access studies.", "A área também pode ser avaliada para monitoramento, pesquisa, educação ambiental e recuperação ecológica.": "The site can also accommodate environmental monitoring, research stations, education, and ecological restoration.",
+  "Selecione um perfil de operador para reorganizar a leitura do bloco, sem substituir a etapa de estudos.": "Select an operator profile to tailor use cases without replacing formal engineering due diligence.", "Aplicações por perfil de operador": "Use cases by operator profile", "Escala de embarcações, armazenagem temporária, apoio a inspeção, manutenção leve, ROV e mergulho profissional.": "Vessel staging, temporary equipment storage, inspection support, light maintenance, ROV operations, and commercial diving.", "Descomissionamento": "Decommissioning & recycling", "Recebimento, triagem e armazenagem temporária de equipamentos e materiais, mediante licenciamento específico.": "Receiving, sorting, and temporary staging of retired offshore subsea equipment, subject to environmental licensing.", "Ambiental e corporativo": "Environmental & corporate hub", "Monitoramento da baía, pesquisa, treinamento, eventos corporativos e turismo náutico de baixo impacto.": "Bay ecological monitoring, marine research, workforce safety training, and low-impact eco-nautical initiatives.", "Cada aplicação requer estudo de demanda, engenharia, impacto ambiental, navegabilidade e modelo de operação.": "Each use case requires demand verification, bathymetric surveys, environmental impact studies, and tailored operational models.",
+  "PROJETOS": "PROJECTS", "Projetos conceituais para leitura estratégica da ilha.": "Conceptual development plans for strategic evaluation.", "Uma visão territorial para organizar possibilidades de ocupação, sempre sujeitas à diligência e aos estudos aplicáveis.": "A master planning framework organizing spatial zoning, subject to legal and technical due diligence.", "Áreas de influência da Ilha do Tavares": "Tavares Island influence zones", "Imagem aérea da Ilha do Tavares com áreas de influência": "Aerial view of Tavares Island highlighting strategic industrial influence zones", "Referências de influência": "Key logistics benchmarks", "Ilha D’Água · Transpetro": "Ilha D’Água · Transpetro", "1 milha náutica": "1 nautical mile", "Refinaria Duque de Caxias": "REDUC Refinery", "8 milhas náuticas": "8 nautical miles", "Porto do Rio": "Port of Rio", "7 milhas náuticas": "7 nautical miles", "BR-101": "BR-101 Highway", "500 m": "500 m (1,640 ft)", "GASOLUB": "GASOLUB Energy Hub", "35 km": "35 km (22 mi)", "Ilha Redonda · Transpetro": "Ilha Redonda · Transpetro", "3 milhas náuticas": "3 nautical miles", "Distâncias indicadas na imagem de referência e sujeitas a confirmação técnica.": "Distances shown in concept graphics are indicative and subject to technical verification.", "Conceito principal": "Master concept", "Terminal marítimo multidisciplinar.": "Multipurpose marine terminal.", "Uma proposta de terminal privado para integrar atracação, apoio offshore, logística e serviços operacionais em uma leitura única do ativo.": "A private offshore terminal concept integrating dedicated berths, logistics yards, supply staging, and marine support operations.", "Prancha conceitual do terminal marítimo multidisciplinar": "Concept master plan for the multipurpose marine terminal", "Cais e atracação": "Piers and vessel berthing", "Tancagem e armazenagem": "Fuel/fluid bunkering & dry storage", "Apoio offshore e reparos leves": "Offshore support & topside repairs", "Pátio, edifício operacional e segurança": "Cargo yard, administration & security", "Frentes complementares": "Complementary master plan options", "Hub náutico e de serviços": "Maritime & nautical services hub", "Apoio a embarcações, suprimentos, manutenção leve e treinamento operacional, em escala compatível com os estudos de acesso e navegabilidade.": "Support for workboats, bunkering, topside maintenance, and marine workforce training sized to navigation studies.", "Reserva operacional e ambiental": "Operational & eco-conservation zone", "Monitoramento da baía, pesquisa, educação ambiental e ocupação de baixo impacto como parte da leitura de preservação e uso responsável.": "Estuary monitoring, marine biology research, ecological education, and sustainable low-impact facilities.", "Estudos conceituais para avaliação estratégica. Qualquer implantação depende de diligência patrimonial, viabilidade técnica, ambiental, navegabilidade, licenciamento e aprovações aplicáveis.": "Conceptual master plans for strategic review. Any development is strictly conditional upon title due diligence, bathymetric feasibility, environmental impact assessment, and regulatory licensing.",
+  "Apoio marítimo": "Offshore vessel operators", "Subsea e engenharia": "Subsea & engineering", "Logística e conformidade": "Logistics & classification", "Monjasa, Blue Water Shipping, DNV, Bureau Veritas, ABS e empresas de inspeção.": "Monjasa, Blue Water Shipping, DNV, Bureau Veritas, ABS, and offshore inspection agencies.", "Operadoras como Petrobras, Shell, Equinor, TotalEnergies, BP, ExxonMobil, Prio, Trident, Enauta e PetroReconcavo podem ser clientes indiretos ou contratantes.": "E&P operators such as Petrobras, Shell, Equinor, TotalEnergies, BP, ExxonMobil, Prio, Trident, and Enauta represent prospective contract demand.",
+  "Localização marítima": "Strategic marine location", "Acesso direto à Baía de Guanabara e possibilidade de complementar instalações terrestres.": "Direct navigable access to Guanabara Bay with potential to complement mainland logistics infrastructure.", "Ecossistema industrial": "Established industrial cluster", "Proximidade de estaleiros, fornecedores, mão de obra naval e empresas de engenharia.": "Immediate proximity to tier-1 shipyards, offshore vendors, certified naval labor, and marine engineering contractors.", "Usos diversificados": "Multipurpose operational versatility", "Apoio offshore, logística, manutenção, pesquisa, turismo e gestão ambiental, conforme viabilidade.": "Offshore staging, warehousing, light repairs, environmental research, and eco-tourism, subject to zoning.", "A demanda por inspeção, manutenção, segurança, gestão ambiental e descomissionamento pode persistir ao longo da transição energética.": "Demand for subsea inspection, hull maintenance, HSE operations, environmental compliance, and decommissioning remains resilient throughout the energy transition.",
+  "Presença na Baía de Guanabara, próxima a um ecossistema naval e offshore consolidado.": "Prime position in Guanabara Bay, anchored within Brazil's premier offshore and shipbuilding cluster.", "Localização diferenciada": "Distinctive island asset", "Ativo insular com potencial de acesso marítimo e proximidade de fornecedores e clientes.": "Private island asset with navigable maritime access and strategic proximity to operators, yards, and suppliers.", "Flexibilidade comercial": "Flexible deal structures", "Venda, arrendamento, parceria operacional ou desenvolvimento sob medida.": "Outright acquisition, long-term lease, joint venture, or build-to-suit development.", "Infraestrutura especializada": "Custom development potential", "Possibilidade de desenvolver uma operação complementar, conforme estudos e aprovações.": "Opportunity to engineer custom waterfront infrastructure in accordance with permits and licensing.", "Perfis prioritários": "Target industry profiles", "Operadores offshore, apoio marítimo, logística, serviços submarinos, estaleiros, descomissionamento e tecnologia marítima.": "Offshore fleet operators, subsea engineering contractors, logistics providers, shipyards, decommissioning firms, and marine tech companies.", "Formatos disponíveis": "Transaction models", "Venda, arrendamento de longo prazo, parceria operacional, joint venture e desenvolvimento sob medida.": "Sale, long-term maritime lease, operating partnership, equity joint venture, or bespoke build-to-suit.", "Próximo contato": "Next steps", "Visita técnica, definição da tese de uso e encaminhamento da diligência documental, técnica e ambiental.": "Technical site visit, alignment on operating thesis, and commencement of legal, environmental, and title due diligence.", "A lista de perfis representa público-alvo comercial, não interesse já manifestado.": "Target company names illustrate commercial synergy and do not imply formal commitments.",
+  "Para agendar visita técnica ou solicitar informação adicional sobre o ativo, preencha o formulário ao lado. Ao enviar, abriremos o WhatsApp com os dados preenchidos para iniciar a conversa.": "To schedule a site visit or request detailed technical materials, complete the form alongside. WhatsApp will open with your pre-filled inquiry to connect directly with our representative.", "Preencha este campo.": "Please complete this field.", "Por favor, insira um e-mail válido.": "Please enter a valid email address.", "Autorizo o contato da Pinciara Imóveis Exclusivos para fins de prospecção comercial. Posso solicitar eliminação dos dados a qualquer momento.": "I authorize Pinciara Imóveis Exclusivos to contact me for commercial inquiries regarding this asset. I may revoke consent and request data deletion at any time.", "O WhatsApp foi aberto com os dados preenchidos para iniciar a conversa.": "WhatsApp was opened with your pre-filled details to begin the conversation.",
+  "Ilha do Tavares · Gradim, São Gonçalo · Rio de Janeiro — Brasil.": "Tavares Island · Gradim, São Gonçalo · Rio de Janeiro — Brazil.", "© 2026 Pinciara Imóveis Exclusivos. Todos os direitos reservados.": "© 2026 Pinciara Imóveis Exclusivos. All rights reserved.", "Documento institucional. Uso sujeito a due diligence.": "Institutional document. All uses subject to due diligence.", "Voltar ao topo": "Back to top", "Consentimento": "Privacy Consent"
+  , "Ver no mapa online": "View interactive map", "Carregando mapa": "Loading map...", "Fechar mapa": "Close map", "Fechar menu": "Close menu", "Abrir menu": "Open menu", "Chamada para investidores": "INVESTOR CALL", "— Operadores offshore, apoio marítimo, logística, serviços submarinos, estaleiros, descomissionamento e tecnologia marítima.": "— Offshore operators, marine support, logistics, subsea services, shipyards, decommissioning, and maritime technology.", "— Venda, arrendamento de longo prazo, parceria operacional, joint venture e desenvolvimento sob medida.": "— Sale, long-term maritime lease, operating partnership, joint venture, and build-to-suit development.", "— Visita técnica, definição da tese de uso e encaminhamento da diligência documental, técnica e ambiental.": "— Site inspection visit, commercial thesis alignment, and technical, legal, and environmental due diligence."
+  , "Conversar diretamente no WhatsApp": "Chat directly on WhatsApp", "Baixar Pitch Deck Oficial (PDF)": "Download Official Pitch Deck (PDF)", "Baixar Pitch Deck": "Download Pitch Deck", "Enviar outra mensagem": "Send another message", "Mensagem pronta no WhatsApp!": "Message ready on WhatsApp!", "Abrimos o WhatsApp com seus dados preenchidos.": "WhatsApp was opened with your pre-filled details.", "Se a janela não abriu automaticamente, toque no botão abaixo para iniciar a conversa com Luiz Pinciara.": "If the window didn't open automatically, tap the button below to start the conversation with Luiz Pinciara.", "Abrir WhatsApp agora": "Open WhatsApp now", "Por favor, informe seu nome.": "Please enter your name.", "Por favor, informe sua empresa.": "Please enter your company.", "Por favor, informe seu telefone com DDD.": "Please enter your phone number.", "Telefone incompleto (mínimo 10 dígitos com DDD).": "Incomplete phone number (at least 10 digits).", "É necessário autorizar o contato para prosseguir.": "You must authorize contact to proceed.", "Abrir termos de privacidade": "Open privacy terms"
 };
 
 const applicationProfiles = [
@@ -95,7 +96,7 @@ const applicationProfiles = [
     id: "offshore",
     label: "Operador offshore",
     title: "Apoio offshore e naval",
-    copy: "Escala de embarcações, armazenagem temporária, apoio a inspecção, manutenção leve, ROV e mergulho profissional.",
+    copy: "Escala de embarcações, armazenagem temporária, apoio a inspeção, manutenção leve, ROV e mergulho profissional.",
     icon: Ship,
   },
   {
@@ -109,7 +110,7 @@ const applicationProfiles = [
     id: "investidor",
     label: "Investidor imobiliário",
     title: "Ambiental e corporativo",
-    copy: "Monitorização da baía, pesquisa, treinamento, eventos corporativos e turismo náutico de baixo impacto.",
+    copy: "Monitoramento da baía, pesquisa, treinamento, eventos corporativos e turismo náutico de baixo impacto.",
     icon: Leaf,
   },
 ] as const;
@@ -386,14 +387,24 @@ export default function Home() {
       return;
     }
     setFormErrors({});
-    const message = [
-      "Olá, Luiz. Gostaria de falar sobre a Ilha do Tavares.",
-      "",
-      `Nome: ${formData.name}`,
-      `Empresa: ${formData.company}`,
-      `E-mail: ${formData.email}`,
-      `Telefone: ${formData.phone}`,
-    ].join("\n");
+    const isEn = language === "en-US";
+    const message = isEn
+      ? [
+          "Hello, Luiz. I would like to inquire about Tavares Island.",
+          "",
+          `Name: ${formData.name}`,
+          `Company: ${formData.company}`,
+          `Email: ${formData.email}`,
+          `Phone: ${formData.phone}`,
+        ].join("\n")
+      : [
+          "Olá, Luiz. Gostaria de falar sobre a Ilha do Tavares.",
+          "",
+          `Nome: ${formData.name}`,
+          `Empresa: ${formData.company}`,
+          `E-mail: ${formData.email}`,
+          `Telefone: ${formData.phone}`,
+        ].join("\n");
     const waUrl = `https://wa.me/5521995221369?text=${encodeURIComponent(message)}`;
     setSubmittedWhatsAppUrl(waUrl);
     trackEvent("whatsapp_click");
@@ -416,24 +427,30 @@ export default function Home() {
   return (
     <div className="site-shell" ref={rootRef}>
       <div className="scroll-progress" style={{ width: `${scrollProgress}%` }} aria-hidden="true" />
-      <a className="skip-link" href="#oportunidade">{t("Saltar para o conteúdo")}</a>
+      <a className="skip-link" href="#oportunidade">
+        {language === "en-US" ? "Skip to main content" : "Pular para o conteúdo"}
+      </a>
 
       <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
         <a className="header-brand" href="#top" onClick={closeMenu}>
           <Brand />
           <span className="header-project">
-            <strong>ILHA DO TAVARES</strong>
-            <small>Baía de Guanabara · Gradim, São Gonçalo</small>
+            <strong>{language === "en-US" ? "TAVARES ISLAND" : "ILHA DO TAVARES"}</strong>
+            <small>{language === "en-US" ? "Guanabara Bay · Gradim, São Gonçalo" : "Baía de Guanabara · Gradim, São Gonçalo"}</small>
           </span>
         </a>
-        <nav className={`desktop-nav ${menuOpen ? "is-open" : ""}`} aria-label={t("Navegação principal")}>
+        <nav className={`desktop-nav ${menuOpen ? "is-open" : ""}`} aria-label={language === "en-US" ? "Main navigation" : "Navegação principal"}>
           {navItems.map(([label, id]) => (
-            <a key={id} href={`#${id}`} onClick={closeMenu}>{label}</a>
+            <a key={id} href={`#${id}`} onClick={closeMenu}>
+              {language === "en-US" && englishCopy[label] ? englishCopy[label] : label}
+            </a>
           ))}
         </nav>
         <a className="header-phone" href="tel:+5521995221369"><Phone size={15} /><span>Luiz Pinciara<small>21 99522-1369</small></span></a>
         <LanguageSelectorDropdown language={language} onChange={setLanguage} />
-        <a className="header-cta" href="#contato" onClick={closeMenu}>Falar com responsável</a>
+        <a className="header-cta" href="#contato" onClick={closeMenu}>
+          {language === "en-US" ? "Contact Representative" : "Falar com responsável"}
+        </a>
         <button className="menu-toggle" type="button" aria-label={menuOpen ? t("Fechar menu") : t("Abrir menu")} aria-expanded={menuOpen} onClick={() => setMenuOpen((value) => !value)}>
           {menuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
@@ -446,16 +463,20 @@ export default function Home() {
           <div className="hero-content container">
             <Reveal className="hero-copy">
               <div className="eyebrow">ATIVO INSULAR · BAÍA DE GUANABARA · GRADIM, SÃO GONÇALO</div>
-              <h1 id="hero-title">Ilha do Tavares<span>.</span></h1>
+              <h1 id="hero-title">{language === "en-US" ? "Tavares Island" : "Ilha do Tavares"}<span>.</span></h1>
               <p className="hero-subtitle">Potencial logístico, naval e offshore na Baía de Guanabara.</p>
               <p className="hero-line">Venda, arrendamento ou parceria estratégica.</p>
               <p className="hero-disclaimer">Ativo para avaliação de investidores e operadores. <strong>Qualquer desenvolvimento depende de regularização patrimonial, viabilidade técnica e licenciamento.</strong></p>
               <div className="hero-actions">
-                <a className="button button--gold" href="#contato">Solicitar conversa inicial <ArrowUpRight size={17} /></a>
-                <a className="button button--outline-gold" href={language === "en-US" ? PITCH_DECK_EN : PITCH_DECK_PT} download>
-                  <FileDown size={16} /> Baixar Pitch Deck
+                <a className="button button--gold" href="#contato">
+                  {language === "en-US" ? "Request Initial Meeting" : "Solicitar conversa inicial"} <ArrowUpRight size={17} />
                 </a>
-                <a className="text-link" href="#oportunidade">Ver enquadramento da oportunidade <ArrowDown size={16} /></a>
+                <a className="button button--outline-gold" href={language === "en-US" ? PITCH_DECK_EN : PITCH_DECK_PT} download>
+                  <FileDown size={16} /> {language === "en-US" ? "Download Pitch Deck" : "Baixar Pitch Deck"}
+                </a>
+                <a className="text-link" href="#oportunidade">
+                  {language === "en-US" ? "View opportunity overview" : "Ver enquadramento da oportunidade"} <ArrowDown size={16} />
+                </a>
               </div>
             </Reveal>
             <div className="hero-aside" aria-label={t("Identificação da oportunidade")}>
@@ -486,15 +507,15 @@ export default function Home() {
           <div className="container">
             <SectionMarker number="02" label="CONTEXTO" />
             <div className="market-layout">
-              <Reveal className="market-copy"><p className="kicker">CENÁRIO DE MERCADO</p><h2>Crescimento do petróleo offshore no Brasil.</h2><p>A expansão do Pré-Sal demanda embarcações de suprimento, bases logísticas, manutenção naval, equipamentos submarinos, inspecção, armazenagem, transporte marítimo, resposta ambiental e descomissionamento.</p><p className="market-note">A tese depende de confirmação actualizada de mercado.</p></Reveal>
-              <Reveal className="metric-panel"><div className="metric-number"><span>3,4</span><MoveRight size={34} /><span>5,2</span></div><div className="metric-unit">milhões de barris/dia</div><p>Cenário optimista descrito no material.</p></Reveal>
+              <Reveal className="market-copy"><p className="kicker">CENÁRIO DE MERCADO</p><h2>Crescimento do petróleo offshore no Brasil.</h2><p>A expansão do Pré-Sal demanda embarcações de suprimento, bases logísticas, manutenção naval, equipamentos submarinos, inspeção, armazenagem, transporte marítimo, resposta ambiental e descomissionamento.</p><p className="market-note">A tese depende de confirmação atualizada de mercado.</p></Reveal>
+              <Reveal className="metric-panel"><div className="metric-number"><span>3,4</span><MoveRight size={34} /><span>5,2</span></div><div className="metric-unit">milhões de barris/dia</div><p>Cenário otimista descrito no material.</p></Reveal>
             </div>
             <div className="market-data-grid stagger-group">
               <div className="stagger-item"><h3>Investidores citados</h3><p>Petrobras, Shell, TotalEnergies, Equinor, BP, ExxonMobil, Karoon, Prio, Trident Energy.</p></div>
-              <div className="stagger-item"><h3>Escopo operacional</h3><p>FPSOs, poços, linhas submarinas, escoamento, reinjecção de gás e CO2, equipamentos e manutenção.</p></div>
+              <div className="stagger-item"><h3>Escopo operacional</h3><p>FPSOs, poços, linhas submarinas, escoamento, reinjeção de gás e CO2, equipamentos e manutenção.</p></div>
               <div className="stagger-item"><h3>Campos citados</h3><p>Búzios, Mero, Atapu, Sépia, Tupi, Itapu, Raia, Campos, cessão onerosa e novas áreas.</p></div>
             </div>
-            <p className="closing-line">Búzios e Mero aparecem no material como projectos relevantes para a expansão e para a cadeia de serviços.</p>
+            <p className="closing-line">Búzios e Mero aparecem no material como projetos relevantes para a expansão e para a cadeia de serviços.</p>
           </div>
         </section>
 
@@ -528,7 +549,7 @@ export default function Home() {
               <div className="dark-card stagger-item"><span className="card-index">02</span><IconTile><Ship size={21} /></IconTile><h3>Baía e Porto do Rio</h3><p>Conexão marítima com Niterói, Rio e demais áreas da baía, com apoio complementar de suprimentos.</p></div>
               <div className="dark-card stagger-item"><span className="card-index">03</span><IconTile><MoveRight size={21} /></IconTile><h3>Integração multimodal</h3><p>Possível conexão entre transporte marítimo e rodoviário, sujeita à verificação de operação e acessos.</p></div>
             </div>
-            <p className="section-footnote">A área também pode ser avaliada para monitorização, pesquisa, educação ambiental e recuperação ecológica.</p>
+            <p className="section-footnote">A área também pode ser avaliada para monitoramento, pesquisa, educação ambiental e recuperação ecológica.</p>
           </div>
         </section>
 
@@ -580,8 +601,8 @@ export default function Home() {
           <div className="container">
             <SectionMarker number="08" label="PROSPECÇÃO" />
             <Reveal><div className="section-heading"><h2>Empresas para prospecção.</h2><p>Perfis de interlocução para uma conversa comercial inicial.</p></div></Reveal>
-            <div className="prospecting-grid stagger-group"><div className="stagger-item"><span className="gold-label">Apoio marítimo</span><p>Edison Chouest, Bram, DOF, Solstad, Svitzer, Wilson Sons.</p></div><div className="stagger-item"><span className="gold-label">Subsea e engenharia</span><p>Oceaneering, Subsea7, Saipem, TechnipFMC, Helix, Baker Hughes, SLB, Halliburton.</p></div><div className="stagger-item"><span className="gold-label">Logística e conformidade</span><p>Monjasa, Blue Water Shipping, DNV, Bureau Veritas, ABS e empresas de inspecção.</p></div></div>
-            <p className="closing-line">Operadoras como Petrobras, Shell, Equinor, TotalEnergies, BP, ExxonMobil, Prio, Trident, Enauta e PetroReconcavo podem ser clientes indirectos ou contratantes.</p>
+            <div className="prospecting-grid stagger-group"><div className="stagger-item"><span className="gold-label">Apoio marítimo</span><p>Edison Chouest, Bram, DOF, Solstad, Svitzer, Wilson Sons.</p></div><div className="stagger-item"><span className="gold-label">Subsea e engenharia</span><p>Oceaneering, Subsea7, Saipem, TechnipFMC, Helix, Baker Hughes, SLB, Halliburton.</p></div><div className="stagger-item"><span className="gold-label">Logística e conformidade</span><p>Monjasa, Blue Water Shipping, DNV, Bureau Veritas, ABS e empresas de inspeção.</p></div></div>
+            <p className="closing-line">Operadoras como Petrobras, Shell, Equinor, TotalEnergies, BP, ExxonMobil, Prio, Trident, Enauta e PetroReconcavo podem ser clientes indiretos ou contratantes.</p>
           </div>
         </section>
 
@@ -589,8 +610,8 @@ export default function Home() {
           <div className="container">
             <SectionMarker number="09" label="DIFERENCIAIS" />
             <Reveal><div className="section-heading"><h2>Diferenciais competitivos.</h2></div></Reveal>
-            <div className="differentials-grid stagger-group"><div className="stagger-item"><span className="card-index">01</span><h3>Localização marítima</h3><p>Acesso directo à Baía de Guanabara e possibilidade de complementar instalações terrestres.</p></div><div className="stagger-item"><span className="card-index">02</span><h3>Ecossistema industrial</h3><p>Proximidade de estaleiros, fornecedores, mão de obra naval e empresas de engenharia.</p></div><div className="stagger-item"><span className="card-index">03</span><h3>Usos diversificados</h3><p>Apoio offshore, logística, manutenção, pesquisa, turismo e gestão ambiental, conforme viabilidade.</p></div></div>
-            <p className="gold-statement">A demanda por inspecção, manutenção, segurança, gestão ambiental e descomissionamento pode persistir ao longo da transição energética.</p>
+            <div className="differentials-grid stagger-group"><div className="stagger-item"><span className="card-index">01</span><h3>Localização marítima</h3><p>Acesso direto à Baía de Guanabara e possibilidade de complementar instalações terrestres.</p></div><div className="stagger-item"><span className="card-index">02</span><h3>Ecossistema industrial</h3><p>Proximidade de estaleiros, fornecedores, mão de obra naval e empresas de engenharia.</p></div><div className="stagger-item"><span className="card-index">03</span><h3>Usos diversificados</h3><p>Apoio offshore, logística, manutenção, pesquisa, turismo e gestão ambiental, conforme viabilidade.</p></div></div>
+            <p className="gold-statement">A demanda por inspeção, manutenção, segurança, gestão ambiental e descomissionamento pode persistir ao longo da transição energética.</p>
           </div>
         </section>
 
@@ -598,8 +619,31 @@ export default function Home() {
           <div className="container">
             <SectionMarker number="10" label="PROPOSTA" />
             <div className="value-layout"><Reveal><h2>Proposta de valor para investidores.</h2><p>Presença na Baía de Guanabara, próxima a um ecossistema naval e offshore consolidado.</p></Reveal><div className="value-points stagger-group"><div className="stagger-item"><span>01</span><div><h3>Localização diferenciada</h3><p>Ativo insular com potencial de acesso marítimo e proximidade de fornecedores e clientes.</p></div></div><div className="stagger-item"><span>02</span><div><h3>Flexibilidade comercial</h3><p>Venda, arrendamento, parceria operacional ou desenvolvimento sob medida.</p></div></div><div className="stagger-item"><span>03</span><div><h3>Infraestrutura especializada</h3><p>Possibilidade de desenvolver uma operação complementar, conforme estudos e aprovações.</p></div></div></div></div>
-            <div className="commercial-terms"><h3>Condições comerciais</h3><div className="commercial-terms-grid stagger-group"><div className="stagger-item"><span>Venda</span><strong>R$ 140.000.000</strong></div><div className="stagger-item"><span>Locação</span><strong>R$ 2.000.000</strong><small>Condições e prazo sob consulta.</small></div></div></div>
-            <div className="investor-callout"><div><span className="gold-label">Chamada para investidores</span><h3>Uma próxima conversa pode começar por uma visita técnica.</h3></div><div className="investor-details"><p><strong>Perfis prioritários</strong> — Operadores offshore, apoio marítimo, logística, serviços submarinos, estaleiros, descomissionamento e tecnologia marítima.</p><p><strong>Formatos disponíveis</strong> — Venda, arrendamento de longo prazo, parceria operacional, joint venture e desenvolvimento sob medida.</p><p><strong>Próximo contacto</strong> — Visita técnica, definição da tese de uso e encaminhamento da diligência documental, técnica e ambiental.</p></div></div>
+            <div className="commercial-terms">
+              <h3>{language === "en-US" ? "Commercial terms" : "Condições comerciais"}</h3>
+              <div className="commercial-terms-grid stagger-group">
+                <div className="stagger-item">
+                  <span>{language === "en-US" ? "Acquisition" : "Venda"}</span>
+                  <strong>{language === "en-US" ? "BRL 140,000,000" : "R$ 140.000.000"}</strong>
+                </div>
+                <div className="stagger-item">
+                  <span>{language === "en-US" ? "Lease" : "Locação"}</span>
+                  <strong>{language === "en-US" ? "BRL 2,000,000 / mo" : "R$ 2.000.000 / mês"}</strong>
+                  <small>{language === "en-US" ? "Terms and duration upon request." : "Condições e prazo sob consulta."}</small>
+                </div>
+              </div>
+            </div>
+            <div className="investor-callout">
+              <div>
+                <span className="gold-label">{language === "en-US" ? "Investor Call" : "Chamada para investidores"}</span>
+                <h3>{language === "en-US" ? "A next conversation can begin with a technical site visit." : "Uma próxima conversa pode começar por uma visita técnica."}</h3>
+              </div>
+              <div className="investor-details">
+                <p><strong>{language === "en-US" ? "Target profiles" : "Perfis prioritários"}</strong> — {language === "en-US" ? "Offshore operators, marine support, logistics, subsea services, shipyards, decommissioning, and maritime technology." : "Operadores offshore, apoio marítimo, logística, serviços submarinos, estaleiros, descomissionamento e tecnologia marítima."}</p>
+                <p><strong>{language === "en-US" ? "Available transaction models" : "Formatos disponíveis"}</strong> — {language === "en-US" ? "Sale, long-term maritime lease, operating partnership, joint venture, and bespoke build-to-suit." : "Venda, arrendamento de longo prazo, parceria operacional, joint venture e desenvolvimento sob medida."}</p>
+                <p><strong>{language === "en-US" ? "Next steps" : "Próximo contato"}</strong> — {language === "en-US" ? "Technical site visit, operational thesis definition, and legal, technical, and environmental due diligence." : "Visita técnica, definição da tese de uso e encaminhamento da diligência documental, técnica e ambiental."}</p>
+              </div>
+            </div>
             <p className="micro-note">A lista de perfis representa público-alvo comercial, não interesse já manifestado.</p>
           </div>
         </section>
@@ -623,7 +667,7 @@ export default function Home() {
                 </p>
                 <div className="contact-quick-actions">
                   <a
-                    href="https://wa.me/5521995221369?text=Ol%C3%A1%2C%20Luiz.%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20a%20Ilha%20do%20Tavares."
+                    href={language === "en-US" ? "https://wa.me/5521995221369?text=Hello%2C%20Luiz.%20I%20would%20like%20information%20regarding%20Tavares%20Island." : "https://wa.me/5521995221369?text=Ol%C3%A1%2C%20Luiz.%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20a%20Ilha%20do%20Tavares."}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="quick-action-link highlight"
@@ -679,7 +723,7 @@ export default function Home() {
                   <form onSubmit={handleFormSubmit} noValidate>
                     <div className="form-grid">
                       <label>
-                        Nome*
+                        {language === "en-US" ? "Name*" : "Nome*"}
                         <input
                           name="name"
                           value={formData.name}
@@ -697,7 +741,7 @@ export default function Home() {
                       </label>
 
                       <label>
-                        Empresa*
+                        {language === "en-US" ? "Company*" : "Empresa*"}
                         <input
                           name="company"
                           value={formData.company}
@@ -715,7 +759,7 @@ export default function Home() {
                       </label>
 
                       <label>
-                        E-mail*
+                        {language === "en-US" ? "Email*" : "E-mail*"}
                         <input
                           name="email"
                           type="email"
@@ -734,7 +778,7 @@ export default function Home() {
                       </label>
 
                       <label>
-                        Telefone*
+                        {language === "en-US" ? "Phone*" : "Telefone*"}
                         <input
                           name="phone"
                           type="tel"
@@ -762,7 +806,9 @@ export default function Home() {
                         aria-invalid={!!formErrors.lgpd}
                       />
                       <span>
-                        Autorizo o contato da Pinciara Imóveis Exclusivos para fins de prospecção comercial. Posso solicitar eliminação dos dados a qualquer momento.
+                        {language === "en-US"
+                          ? "I authorize Pinciara Imóveis Exclusivos to contact me for commercial inquiries. I may request data deletion at any time."
+                          : "Autorizo o contato da Pinciara Imóveis Exclusivos para fins de prospecção comercial. Posso solicitar eliminação dos dados a qualquer momento."}
                       </span>
                     </label>
                     {formErrors.lgpd && (
@@ -773,7 +819,7 @@ export default function Home() {
 
                     <div className="form-submit-row">
                       <button className="button button--gold form-submit" type="submit">
-                        Enviar mensagem <Send size={17} />
+                        {language === "en-US" ? "Send message" : "Enviar mensagem"} <Send size={17} />
                       </button>
                     </div>
                   </form>
@@ -788,21 +834,33 @@ export default function Home() {
         <div className="container footer-grid">
           <div>
             <Brand compact />
-            <p>Ilha do Tavares · Gradim, São Gonçalo · Rio de Janeiro — Brasil.</p>
-            <p>© 2026 Pinciara Imóveis Exclusivos. Todos os direitos reservados.</p>
+            <p>
+              {language === "en-US"
+                ? "Tavares Island · Gradim, São Gonçalo · Rio de Janeiro — Brazil."
+                : "Ilha do Tavares · Gradim, São Gonçalo · Rio de Janeiro — Brasil."}
+            </p>
+            <p>
+              {language === "en-US"
+                ? "© 2026 Pinciara Imóveis Exclusivos. All rights reserved."
+                : "© 2026 Pinciara Imóveis Exclusivos. Todos os direitos reservados."}
+            </p>
           </div>
           <div>
             <p>Luiz Pinciara · <a href="tel:+5521995221369">21 99522-1369</a></p>
-            <p>Documento institucional. Uso sujeito a due diligence.</p>
+            <p>
+              {language === "en-US"
+                ? "Institutional document. All uses subject to due diligence."
+                : "Documento institucional. Uso sujeito a due diligence."}
+            </p>
             <nav>
               <button type="button" className="footer-nav-btn" onClick={() => openLegalModal("privacy")}>
-                Política de Privacidade
+                {language === "en-US" ? "Privacy Policy" : "Política de Privacidade"}
               </button>
               <button type="button" className="footer-nav-btn" onClick={() => openLegalModal("terms")}>
-                Termos de Uso
+                {language === "en-US" ? "Terms of Use" : "Termos de Uso"}
               </button>
               <button type="button" className="footer-nav-btn" onClick={() => openLegalModal("deletion")}>
-                Solicitar eliminação de dados
+                {language === "en-US" ? "Request data deletion" : "Solicitar eliminação de dados"}
               </button>
             </nav>
           </div>
@@ -821,11 +879,13 @@ export default function Home() {
       )}
 
       {consentVisible && (
-        <aside className="consent-banner" role="dialog" aria-label={t("Consentimento")}>
+        <aside className="consent-banner" role="dialog" aria-label={language === "en-US" ? "Privacy Consent" : "Consentimento"}>
           <div>
-            <span className="gold-label">PRIVACIDADE</span>
+            <span className="gold-label">{language === "en-US" ? "PRIVACY" : "PRIVACIDADE"}</span>
             <p>
-              Autorizo o contato da Pinciara Imóveis Exclusivos para fins de prospecção comercial. Posso solicitar eliminação dos dados a qualquer momento.
+              {language === "en-US"
+                ? "I authorize Pinciara Imóveis Exclusivos to contact me for commercial inquiries. I may request data deletion at any time."
+                : "Autorizo o contato da Pinciara Imóveis Exclusivos para fins de prospecção comercial. Posso solicitar eliminação dos dados a qualquer momento."}
             </p>
             <button
               type="button"
@@ -838,10 +898,10 @@ export default function Home() {
           </div>
           <div className="consent-actions">
             <button type="button" onClick={() => handleConsent(true)}>
-              Aceitar
+              {language === "en-US" ? "Accept" : "Aceitar"}
             </button>
             <button type="button" onClick={() => handleConsent(false)}>
-              Agora não
+              {language === "en-US" ? "Not now" : "Agora não"}
             </button>
           </div>
         </aside>
