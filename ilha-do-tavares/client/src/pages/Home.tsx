@@ -618,7 +618,35 @@ export default function Home() {
         <section className="section section-gray value-section" id="proposta">
           <div className="container">
             <SectionMarker number="10" label="PROPOSTA" />
-            <div className="value-layout"><Reveal><h2>Proposta de valor para investidores.</h2><p>Presença na Baía de Guanabara, próxima a um ecossistema naval e offshore consolidado.</p></Reveal><div className="value-points stagger-group"><div className="stagger-item"><span>01</span><div><h3>Localização diferenciada</h3><p>Ativo insular com potencial de acesso marítimo e proximidade de fornecedores e clientes.</p></div></div><div className="stagger-item"><span>02</span><div><h3>Flexibilidade comercial</h3><p>Venda, arrendamento, parceria operacional ou desenvolvimento sob medida.</p></div></div><div className="stagger-item"><span>03</span><div><h3>Infraestrutura especializada</h3><p>Possibilidade de desenvolver uma operação complementar, conforme estudos e aprovações.</p></div></div></div></div>
+            <div className="value-layout">
+              <Reveal>
+                <h2>{language === "en-US" ? "Value proposition for investors." : "Proposta de valor para investidores."}</h2>
+                <p>{language === "en-US" ? "Prime position in Guanabara Bay, anchored within Brazil's premier offshore and shipbuilding cluster." : "Presença na Baía de Guanabara, próxima a um ecossistema naval e offshore consolidado."}</p>
+              </Reveal>
+              <div className="value-points stagger-group">
+                <div className="stagger-item">
+                  <span>01</span>
+                  <div>
+                    <h3>{language === "en-US" ? "Distinctive island asset" : "Localização diferenciada"}</h3>
+                    <p>{language === "en-US" ? "Private island asset with navigable maritime access and strategic proximity to operators, yards, and suppliers." : "Ativo insular com potencial de acesso marítimo e proximidade de fornecedores e clientes."}</p>
+                  </div>
+                </div>
+                <div className="stagger-item">
+                  <span>02</span>
+                  <div>
+                    <h3>{language === "en-US" ? "Flexible deal structures" : "Flexibilidade comercial"}</h3>
+                    <p>{language === "en-US" ? "Outright acquisition, long-term lease, joint venture, or build-to-suit development." : "Venda, arrendamento, parceria operacional ou desenvolvimento sob medida."}</p>
+                  </div>
+                </div>
+                <div className="stagger-item">
+                  <span>03</span>
+                  <div>
+                    <h3>{language === "en-US" ? "Custom development potential" : "Infraestrutura especializada"}</h3>
+                    <p>{language === "en-US" ? "Opportunity to engineer custom waterfront infrastructure in accordance with permits and licensing." : "Possibilidade de desenvolver uma operação complementar, conforme estudos e aprovações."}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div className="commercial-terms">
               <h3>{language === "en-US" ? "Commercial terms" : "Condições comerciais"}</h3>
               <div className="commercial-terms-grid stagger-group">
@@ -644,7 +672,11 @@ export default function Home() {
                 <p><strong>{language === "en-US" ? "Next steps" : "Próximo contato"}</strong> — {language === "en-US" ? "Technical site visit, operational thesis definition, and legal, technical, and environmental due diligence." : "Visita técnica, definição da tese de uso e encaminhamento da diligência documental, técnica e ambiental."}</p>
               </div>
             </div>
-            <p className="micro-note">A lista de perfis representa público-alvo comercial, não interesse já manifestado.</p>
+            <p className="micro-note">
+              {language === "en-US"
+                ? "Target company names illustrate commercial synergy and do not imply formal commitments."
+                : "A lista de perfis representa público-alvo comercial, não interesse já manifestado."}
+            </p>
           </div>
         </section>
 
