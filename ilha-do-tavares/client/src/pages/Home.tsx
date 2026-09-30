@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { animate, createScope, stagger } from "animejs";
 import {
+  AlertCircle,
   ArrowDown,
   ArrowUpRight,
   Check,
@@ -8,10 +9,12 @@ import {
   ChevronUp,
   Compass,
   Factory,
+  FileDown,
   Hammer,
   Leaf,
   MapPin,
   Menu,
+  MessageCircle,
   MoveRight,
   Navigation,
   Phone,
@@ -23,6 +26,7 @@ import {
 } from "lucide-react";
 import LanguageSelectorDropdown from "@/components/ui/language-selector-dropdown";
 import { ViewOnMap } from "@/components/watermelon/view-on-map";
+import { LegalModal, type LegalTab } from "@/components/LegalModal";
 
 const HERO_IMAGE = "/assets/hero-ilha.jpg";
 const REGIONAL_IMAGE = "/assets/regional-ilha.jpg";
@@ -30,6 +34,8 @@ const LOGO_IMAGE = "/assets/logo-pinciara.png";
 const CONTACT_IMAGE = "/assets/luiz-pinciara.png";
 const INFLUENCE_IMAGE = "/assets/ilha-areas-influencia.jpeg";
 const TERMINAL_IMAGE = "/assets/terminal-conceitual.jpeg";
+const PITCH_DECK_PT = "/assets/docs/Pitch_Deck_Institucional_Ilha_do_Tavares_Portugues.pdf";
+const PITCH_DECK_EN = "/assets/docs/Pitch_Deck_Institucional_Ilha_do_Tavares_English.pdf";
 
 const navItems = [
   ["A oportunidade", "oportunidade"],
@@ -81,6 +87,7 @@ const englishCopy: Record<string, string> = {
   "Para agendar visita técnica ou solicitar informação adicional sobre o ativo, preencha o formulário ao lado. Ao enviar, abriremos o WhatsApp com os dados preenchidos para iniciar a conversa.": "To schedule a technical visit or request additional information about the asset, complete the form alongside. On submission, WhatsApp will open with your details to begin the conversation.", "Preencha este campo.": "Complete this field.", "Introduza um e-mail válido.": "Enter a valid email address.", "Autorizo o contacto da Pinciara Imóveis Exclusivos para fins de prospecção comercial. Posso solicitar eliminação dos dados a qualquer momento.": "I authorize Pinciara Imóveis Exclusivos to contact me for commercial outreach. I may request deletion of my data at any time.", "O WhatsApp foi aberto com os dados preenchidos para iniciar a conversa.": "WhatsApp has opened with your details to begin the conversation.",
   "Ilha do Tavares · Gradim, São Gonçalo · Rio de Janeiro — Brasil.": "Tavares Island · Gradim, São Gonçalo · Rio de Janeiro — Brazil.", "© 2026 Pinciara Imóveis Exclusivos. Todos os direitos reservados.": "© 2026 Pinciara Imóveis Exclusivos. All rights reserved.", "Documento institucional. Uso sujeito a due diligence.": "Institutional document. Use subject to due diligence.", "Voltar ao topo": "Back to top", "Consentimento": "Consent"
   , "Ativo para avaliação de investidores e operadores.": "Asset for investor and operator assessment.", "Ver no mapa online": "View online map", "Carregando mapa": "Loading map", "Fechar mapa": "Close map", "Fechar menu": "Close menu", "Abrir menu": "Open menu", "Chamada para investidores": "INVESTOR CALL", "— Operadores offshore, apoio marítimo, logística, serviços submarinos, estaleiros, descomissionamento e tecnologia marítima.": "— Offshore operators, maritime support, logistics, subsea services, shipyards, decommissioning and maritime technology.", "— Venda, arrendamento de longo prazo, parceria operacional, joint venture e desenvolvimento sob medida.": "— Sale, long-term lease, operating partnership, joint venture and tailored development.", "— Visita técnica, definição da tese de uso e encaminhamento da diligência documental, técnica e ambiental.": "— Technical visit, definition of the use thesis and referral for documentary, technical and environmental due diligence."
+  , "Projetos": "Projects", "Ilha do Tavares": "Tavares Island", "Conversar diretamente no WhatsApp": "Chat directly on WhatsApp", "Baixar Pitch Deck Oficial (PDF)": "Download Official Pitch Deck (PDF)", "Baixar Pitch Deck": "Download Pitch Deck", "Enviar outra mensagem": "Send another message", "Mensagem pronta no WhatsApp!": "Message ready on WhatsApp!", "Abrimos o WhatsApp com seus dados preenchidos.": "WhatsApp was opened with your pre-filled details.", "Se a janela não abriu automaticamente, toque no botão abaixo para iniciar a conversa com Luiz Pinciara.": "If the window didn't open automatically, tap the button below to start the conversation with Luiz Pinciara.", "Abrir WhatsApp agora": "Open WhatsApp now", "Por favor, informe seu nome.": "Please enter your name.", "Por favor, informe sua empresa.": "Please enter your company.", "Por favor, insira um e-mail válido.": "Please enter a valid email address.", "Por favor, informe seu telefone com DDD.": "Please enter your phone number.", "Telefone incompleto (mínimo 10 dígitos com DDD).": "Incomplete phone number (at least 10 digits).", "É necessário autorizar o contato para prosseguir.": "You must authorize contact to proceed.", "Abrir termos de privacidade": "Open privacy terms"
 };
 
 const applicationProfiles = [
@@ -148,6 +155,23 @@ export default function Home() {
   const [consentVisible, setConsentVisible] = useState(false);
   const [activeProfile, setActiveProfile] = useState("offshore");
   const [formStatus, setFormStatus] = useState<"idle" | "error" | "success">("idle");
+  const [legalModalOpen, setLegalModalOpen] = useState(false);
+  const [legalActiveTab, setLegalActiveTab] = useState<LegalTab>("privacy");
+  const [formData, setFormData] = useState({
+    name: "",
+    company: "",
+    email: "",
+    phone: "",
+    lgpd: false,
+  });
+  const [formErrors, setFormErrors] = useState<{
+    name?: string;
+    company?: string;
+    email?: string;
+    phone?: string;
+    lgpd?: string;
+  }>({});
+  const [submittedWhatsAppUrl, setSubmittedWhatsAppUrl] = useState("");
 
   const rootRef = useRef<HTMLDivElement>(null);
   const scopeRef = useRef<ReturnType<typeof createScope> | null>(null);
@@ -290,27 +314,98 @@ export default function Home() {
 
   const closeMenu = () => setMenuOpen(false);
 
-  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    if (!form.checkValidity()) {
-      setFormStatus("error");
-      form.querySelector(":invalid")?.scrollIntoView({ behavior: "smooth", block: "center" });
+  const openLegalModal = (tab: LegalTab) => {
+    setLegalActiveTab(tab);
+    setLegalModalOpen(true);
+  };
+
+  const handleFieldChange = (field: keyof typeof formData, value: string | boolean) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    if (formErrors[field]) {
+      setFormErrors((prev) => {
+        const next = { ...prev };
+        delete next[field];
+        return next;
+      });
+    }
+  };
+
+  const handlePhoneChange = (raw: string) => {
+    if (raw.startsWith("+")) {
+      handleFieldChange("phone", raw);
       return;
     }
-    const data = new FormData(form);
+    const digits = raw.replace(/\D/g, "").slice(0, 11);
+    let formatted = digits;
+    if (digits.length > 2 && digits.length <= 6) {
+      formatted = `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+    } else if (digits.length > 6 && digits.length <= 10) {
+      formatted = `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
+    } else if (digits.length === 11) {
+      formatted = `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
+    }
+    handleFieldChange("phone", formatted);
+  };
+
+  const validateForm = () => {
+    const errors: Record<string, string> = {};
+    const isEn = language === "en-US";
+    if (!formData.name.trim()) {
+      errors.name = isEn ? "Please enter your name." : "Por favor, informe seu nome.";
+    }
+    if (!formData.company.trim()) {
+      errors.company = isEn ? "Please enter your company." : "Por favor, informe sua empresa.";
+    }
+    if (!formData.email.trim()) {
+      errors.email = isEn ? "Please enter your email." : "Por favor, informe seu e-mail.";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
+      errors.email = isEn ? "Please enter a valid email address." : "Por favor, insira um e-mail válido.";
+    }
+    const phoneDigits = formData.phone.replace(/\D/g, "");
+    if (!formData.phone.trim()) {
+      errors.phone = isEn ? "Please enter your phone number." : "Por favor, informe seu telefone com DDD.";
+    } else if (phoneDigits.length < 10 && !formData.phone.startsWith("+")) {
+      errors.phone = isEn ? "Incomplete phone number (at least 10 digits)." : "Telefone incompleto (mínimo 10 dígitos com DDD).";
+    }
+    if (!formData.lgpd) {
+      errors.lgpd = isEn ? "You must authorize contact to proceed." : "É necessário autorizar o contato para prosseguir.";
+    }
+    return errors;
+  };
+
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const errors = validateForm();
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      setFormStatus("error");
+      const firstError = Object.keys(errors)[0];
+      const targetEl = rootRef.current?.querySelector(`[name="${firstError}"]`) as HTMLElement | null;
+      targetEl?.scrollIntoView({ behavior: "smooth", block: "center" });
+      targetEl?.focus();
+      return;
+    }
+    setFormErrors({});
     const message = [
       "Olá, Luiz. Gostaria de falar sobre a Ilha do Tavares.",
       "",
-      `Nome: ${data.get("name")}`,
-      `Empresa: ${data.get("company")}`,
-      `E-mail: ${data.get("email")}`,
-      `Telefone: ${data.get("phone")}`,
+      `Nome: ${formData.name}`,
+      `Empresa: ${formData.company}`,
+      `E-mail: ${formData.email}`,
+      `Telefone: ${formData.phone}`,
     ].join("\n");
+    const waUrl = `https://wa.me/5521995221369?text=${encodeURIComponent(message)}`;
+    setSubmittedWhatsAppUrl(waUrl);
     trackEvent("whatsapp_click");
-    window.open(`https://wa.me/5521995221369?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+    window.open(waUrl, "_blank", "noopener,noreferrer");
     setFormStatus("success");
-    form.reset();
+  };
+
+  const handleResetForm = () => {
+    setFormData({ name: "", company: "", email: "", phone: "", lgpd: false });
+    setFormErrors({});
+    setFormStatus("idle");
+    setSubmittedWhatsAppUrl("");
   };
 
   const handleConsent = (accepted: boolean) => {
@@ -357,6 +452,9 @@ export default function Home() {
               <p className="hero-disclaimer">Ativo para avaliação de investidores e operadores. <strong>Qualquer desenvolvimento depende de regularização patrimonial, viabilidade técnica e licenciamento.</strong></p>
               <div className="hero-actions">
                 <a className="button button--gold" href="#contato">Solicitar conversa inicial <ArrowUpRight size={17} /></a>
+                <a className="button button--outline-gold" href={language === "en-US" ? PITCH_DECK_EN : PITCH_DECK_PT} download>
+                  <FileDown size={16} /> Baixar Pitch Deck
+                </a>
                 <a className="text-link" href="#oportunidade">Ver enquadramento da oportunidade <ArrowDown size={16} /></a>
               </div>
             </Reveal>
@@ -509,18 +607,253 @@ export default function Home() {
         <section className="section section-gray contact-section" id="contato">
           <div className="container">
             <SectionMarker number="11" label="CONTATO" />
-            <div className="contact-layout"><Reveal className="contact-intro"><p className="kicker">PRÓXIMO PASSO</p><h2>Falar com responsável.</h2><div className="contact-person"><img className="contact-avatar" src={CONTACT_IMAGE} alt="Luiz Pinciara" /><div><strong>Luiz Pinciara</strong><a href="tel:+5521995221369"><Phone size={15} /> 21 99522-1369</a></div></div><p>Para agendar visita técnica ou solicitar informação adicional sobre o ativo, preencha o formulário ao lado. Ao enviar, abriremos o WhatsApp com os dados preenchidos para iniciar a conversa.</p><div className="contact-links"><a href="#contato"><Send size={18} /> Preencher formulário</a></div></Reveal>
-              <Reveal className="contact-form-card"><form onSubmit={handleFormSubmit} noValidate><div className="form-grid"><label>Nome*<input name="name" required aria-required="true" autoComplete="name" />{formStatus === "error" && <small className="field-error">Preencha este campo.</small>}</label><label>Empresa*<input name="company" required aria-required="true" autoComplete="organization" />{formStatus === "error" && <small className="field-error">Preencha este campo.</small>}</label><label>E-mail*<input name="email" type="email" required aria-required="true" autoComplete="email" />{formStatus === "error" && <small className="field-error">Introduza um e-mail válido.</small>}</label><label>Telefone*<input name="phone" type="tel" required aria-required="true" autoComplete="tel" />{formStatus === "error" && <small className="field-error">Preencha este campo.</small>}</label></div><label className="consent-check"><input type="checkbox" name="lgpd" required aria-required="true" /> <span>Autorizo o contacto da Pinciara Imóveis Exclusivos para fins de prospecção comercial. Posso solicitar eliminação dos dados a qualquer momento.</span></label><button className="button button--gold form-submit" type="submit">Enviar mensagem <Send size={17} /></button>{formStatus === "success" && <div className="form-success" role="status"><Check size={18} /> O WhatsApp foi aberto com os dados preenchidos para iniciar a conversa.</div>}</form></Reveal>
+            <div className="contact-layout">
+              <Reveal className="contact-intro">
+                <p className="kicker">PRÓXIMO PASSO</p>
+                <h2>Falar com responsável.</h2>
+                <div className="contact-person">
+                  <img className="contact-avatar" src={CONTACT_IMAGE} alt="Luiz Pinciara" />
+                  <div>
+                    <strong>Luiz Pinciara</strong>
+                    <a href="tel:+5521995221369"><Phone size={15} /> 21 99522-1369</a>
+                  </div>
+                </div>
+                <p>
+                  Para agendar visita técnica ou solicitar informação adicional sobre o ativo, preencha o formulário ao lado. Ao enviar, abriremos o WhatsApp com os dados preenchidos para iniciar a conversa.
+                </p>
+                <div className="contact-quick-actions">
+                  <a
+                    href="https://wa.me/5521995221369?text=Ol%C3%A1%2C%20Luiz.%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20a%20Ilha%20do%20Tavares."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="quick-action-link highlight"
+                  >
+                    <MessageCircle size={18} />
+                    <span>{language === "en-US" ? "Chat directly on WhatsApp" : "Conversar diretamente no WhatsApp"}</span>
+                  </a>
+                  <a
+                    href={language === "en-US" ? PITCH_DECK_EN : PITCH_DECK_PT}
+                    download
+                    className="quick-action-link"
+                  >
+                    <FileDown size={18} />
+                    <span>{language === "en-US" ? "Download Official Pitch Deck (PDF)" : "Baixar Pitch Deck Oficial (PDF)"}</span>
+                  </a>
+                </div>
+              </Reveal>
+
+              <Reveal className="contact-form-card">
+                {formStatus === "success" ? (
+                  <div className="form-success-card" role="status">
+                    <div className="form-success-header">
+                      <Check size={20} />
+                      <span>{language === "en-US" ? "Message ready on WhatsApp!" : "Mensagem pronta no WhatsApp!"}</span>
+                    </div>
+                    <p className="form-success-text">
+                      {language === "en-US"
+                        ? "We opened WhatsApp with your details pre-filled. If it didn't open automatically, use the button below to start the conversation."
+                        : "Abrimos o WhatsApp com seus dados preenchidos. Se a janela não abriu automaticamente, toque no botão abaixo para iniciar a conversa com Luiz Pinciara."}
+                    </p>
+                    <div className="form-submit-row">
+                      {submittedWhatsAppUrl && (
+                        <a
+                          href={submittedWhatsAppUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="button button--gold"
+                        >
+                          <Send size={16} />
+                          <span>{language === "en-US" ? "Open WhatsApp now" : "Abrir WhatsApp agora"}</span>
+                        </a>
+                      )}
+                      <button
+                        type="button"
+                        onClick={handleResetForm}
+                        className="button button--outline"
+                      >
+                        {language === "en-US" ? "Send another message" : "Enviar outra mensagem"}
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <form onSubmit={handleFormSubmit} noValidate>
+                    <div className="form-grid">
+                      <label>
+                        Nome*
+                        <input
+                          name="name"
+                          value={formData.name}
+                          onChange={(e) => handleFieldChange("name", e.target.value)}
+                          className={formErrors.name ? "has-error" : ""}
+                          placeholder={language === "en-US" ? "Your full name" : "Seu nome completo"}
+                          autoComplete="name"
+                          aria-invalid={!!formErrors.name}
+                        />
+                        {formErrors.name && (
+                          <span className="field-error">
+                            <AlertCircle size={13} /> {formErrors.name}
+                          </span>
+                        )}
+                      </label>
+
+                      <label>
+                        Empresa*
+                        <input
+                          name="company"
+                          value={formData.company}
+                          onChange={(e) => handleFieldChange("company", e.target.value)}
+                          className={formErrors.company ? "has-error" : ""}
+                          placeholder={language === "en-US" ? "Company name" : "Nome da sua empresa"}
+                          autoComplete="organization"
+                          aria-invalid={!!formErrors.company}
+                        />
+                        {formErrors.company && (
+                          <span className="field-error">
+                            <AlertCircle size={13} /> {formErrors.company}
+                          </span>
+                        )}
+                      </label>
+
+                      <label>
+                        E-mail*
+                        <input
+                          name="email"
+                          type="email"
+                          value={formData.email}
+                          onChange={(e) => handleFieldChange("email", e.target.value)}
+                          className={formErrors.email ? "has-error" : ""}
+                          placeholder="contato@empresa.com"
+                          autoComplete="email"
+                          aria-invalid={!!formErrors.email}
+                        />
+                        {formErrors.email && (
+                          <span className="field-error">
+                            <AlertCircle size={13} /> {formErrors.email}
+                          </span>
+                        )}
+                      </label>
+
+                      <label>
+                        Telefone*
+                        <input
+                          name="phone"
+                          type="tel"
+                          value={formData.phone}
+                          onChange={(e) => handlePhoneChange(e.target.value)}
+                          className={formErrors.phone ? "has-error" : ""}
+                          placeholder={language === "en-US" ? "+1 555 123-4567" : "(21) 99999-9999"}
+                          autoComplete="tel"
+                          aria-invalid={!!formErrors.phone}
+                        />
+                        {formErrors.phone && (
+                          <span className="field-error">
+                            <AlertCircle size={13} /> {formErrors.phone}
+                          </span>
+                        )}
+                      </label>
+                    </div>
+
+                    <label className={`consent-check ${formErrors.lgpd ? "has-error" : ""}`}>
+                      <input
+                        type="checkbox"
+                        name="lgpd"
+                        checked={formData.lgpd}
+                        onChange={(e) => handleFieldChange("lgpd", e.target.checked)}
+                        aria-invalid={!!formErrors.lgpd}
+                      />
+                      <span>
+                        Autorizo o contato da Pinciara Imóveis Exclusivos para fins de prospecção comercial. Posso solicitar eliminação dos dados a qualquer momento.
+                      </span>
+                    </label>
+                    {formErrors.lgpd && (
+                      <span className="field-error" style={{ marginTop: "6px" }}>
+                        <AlertCircle size={13} /> {formErrors.lgpd}
+                      </span>
+                    )}
+
+                    <div className="form-submit-row">
+                      <button className="button button--gold form-submit" type="submit">
+                        Enviar mensagem <Send size={17} />
+                      </button>
+                    </div>
+                  </form>
+                )}
+              </Reveal>
             </div>
           </div>
         </section>
       </main>
 
-      <footer className="site-footer"><div className="container footer-grid"><div><Brand compact /><p>Ilha do Tavares · Gradim, São Gonçalo · Rio de Janeiro — Brasil.</p><p>© 2026 Pinciara Imóveis Exclusivos. Todos os direitos reservados.</p></div><div><p>Luiz Pinciara · <a href="tel:+5521995221369">21 99522-1369</a></p><p>Documento institucional. Uso sujeito a due diligence.</p><nav><a href="#contato">Política de Privacidade</a><a href="#contato">Termos de Uso</a><a href="#contato">Solicitar eliminação de dados</a></nav></div></div></footer>
+      <footer className="site-footer">
+        <div className="container footer-grid">
+          <div>
+            <Brand compact />
+            <p>Ilha do Tavares · Gradim, São Gonçalo · Rio de Janeiro — Brasil.</p>
+            <p>© 2026 Pinciara Imóveis Exclusivos. Todos os direitos reservados.</p>
+          </div>
+          <div>
+            <p>Luiz Pinciara · <a href="tel:+5521995221369">21 99522-1369</a></p>
+            <p>Documento institucional. Uso sujeito a due diligence.</p>
+            <nav>
+              <button type="button" className="footer-nav-btn" onClick={() => openLegalModal("privacy")}>
+                Política de Privacidade
+              </button>
+              <button type="button" className="footer-nav-btn" onClick={() => openLegalModal("terms")}>
+                Termos de Uso
+              </button>
+              <button type="button" className="footer-nav-btn" onClick={() => openLegalModal("deletion")}>
+                Solicitar eliminação de dados
+              </button>
+            </nav>
+          </div>
+        </div>
+      </footer>
 
-      {showTop && <button className="back-to-top" type="button" aria-label={t("Voltar ao topo")} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}><ChevronUp size={19} /></button>}
+      {showTop && (
+        <button
+          className="back-to-top"
+          type="button"
+          aria-label={t("Voltar ao topo")}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        >
+          <ChevronUp size={19} />
+        </button>
+      )}
 
-      {consentVisible && <aside className="consent-banner" role="dialog" aria-label={t("Consentimento")}><div><span className="gold-label">PRIVACIDADE</span><p>Autorizo o contacto da Pinciara Imóveis Exclusivos para fins de prospecção comercial. Posso solicitar eliminação dos dados a qualquer momento.</p></div><div className="consent-actions"><button type="button" onClick={() => handleConsent(true)}>Aceitar</button><button type="button" onClick={() => handleConsent(false)}>Agora não</button></div></aside>}
+      {consentVisible && (
+        <aside className="consent-banner" role="dialog" aria-label={t("Consentimento")}>
+          <div>
+            <span className="gold-label">PRIVACIDADE</span>
+            <p>
+              Autorizo o contato da Pinciara Imóveis Exclusivos para fins de prospecção comercial. Posso solicitar eliminação dos dados a qualquer momento.
+            </p>
+            <button
+              type="button"
+              className="footer-nav-btn"
+              style={{ marginTop: "6px", display: "inline-block" }}
+              onClick={() => openLegalModal("privacy")}
+            >
+              {language === "en-US" ? "Read privacy policy" : "Ler política de privacidade"}
+            </button>
+          </div>
+          <div className="consent-actions">
+            <button type="button" onClick={() => handleConsent(true)}>
+              Aceitar
+            </button>
+            <button type="button" onClick={() => handleConsent(false)}>
+              Agora não
+            </button>
+          </div>
+        </aside>
+      )}
+
+      <LegalModal
+        isOpen={legalModalOpen}
+        activeTab={legalActiveTab}
+        language={language}
+        onClose={() => setLegalModalOpen(false)}
+        onTabChange={setLegalActiveTab}
+      />
     </div>
   );
 }
