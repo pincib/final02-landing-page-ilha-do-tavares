@@ -1,16 +1,12 @@
 {
-  "name": "Ilha-Projeto",
+  "name": "final02-landing-page-ilha-do-tavares",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@vercel/analytics": "^2.0.1",
-    "animejs": "^4.5.0"
+    "dev": "npm --prefix ilha-do-tavares run dev",
+    "build": "npm --prefix ilha-do-tavares run build:vercel",
+    "build:vercel": "npm --prefix ilha-do-tavares run build:vercel",
+    "preview": "npm --prefix ilha-do-tavares run preview",
+    "check": "npm --prefix ilha-do-tavares run check"
   }
 }

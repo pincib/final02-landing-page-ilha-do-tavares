@@ -1,1 +1,42 @@
-node_modules
+# Dependencies
+**/node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+**/dist/
+build/
+*.dist
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Logs & Debug
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+.manus-logs/
+**/__manus__/
+
+# Vercel
+.vercel/
+
+# Temporary
+tmp/
+temp/
